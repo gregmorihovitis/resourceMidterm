@@ -31,9 +31,33 @@
     </section>
     <!-- content -->
     <section class="container">
-      <main class="resource">
-        <% include resource.ejs %>
-      </main>
+      <!-- Shows topic 1 resources -->
+      <section class="topicSection">
+          <h3>Topic 1</h3>
+          <article class="row align-items-center">
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          </article>
+      </section>
+      <!-- Shows topic 2 resources -->
+      <section class="topicSection">
+          <h3>Topic 2</h3>
+          <article class="row align-items-center">
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          </article>
+      </section>
+      <!-- Shows topic 3 resources -->
+      <section class="topicSection">
+          <h3>Topic 3</h3>
+          <article class="row align-items-center">
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          <% include resource.ejs %>
+          </article>
+      </section>
     </section>
   </body>
 </html>
