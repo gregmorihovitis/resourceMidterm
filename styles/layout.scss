@@ -14,9 +14,19 @@ body {
   }
 
   .card {
-    width: 18rem;
+    width: 20rem;
     margin-left: 15px;
     margin-right: 20px;
+  }
+}
+
+nav {
+  .navbar-nav li {
+    display: inline-block;
+  }
+
+  .form-inline {
+    width: 100%;
   }
 }
 
