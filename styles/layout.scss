@@ -1,7 +1,45 @@
 body {
   background-color: #EEE;
 
-  h1 {
-    color: #244751;
+  .mainTagLine {
+    font-size: 64px;
+  }
+
+  .subTagLine {
+    font-size: 21px;
+  }
+
+  .card {
+    width: 20rem;
+    margin-left: 15px;
+    margin-right: 20px;
+
+    .btn-container {
+      display: inline-block;
+      padding-left: 0;
+    }
   }
 }
+
+nav {
+  .navbar-nav li {
+    display: inline-block;
+  }
+
+  .form-inline {
+    width: 100%;
+  }
+}
+
+
+.user-setting {
+    width: 500px;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 23px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+

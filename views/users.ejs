@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Welcome to Resource Wall</title>
+<head>
+  <title>Welcome to Resource Wall</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -20,16 +20,27 @@
     <!-- Internal JS files-->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-  <body>
-    <!-- navbar -->
-    <% include navbar.ejs %>
-    <!-- -->
-    <section class="container">
-      <h1 class="mainTagLine">Learning starts here</h1>
-      <p class="subTagLine">Discover ideas from all over the web, and get personalized recommendations based on the topics you love. Get a taste below!</p>
+</head>
+<body>
+  <!-- navbar -->
+  <% include navbar.ejs %>
+  <h2>My Resources</h2>
+  <!-- content -->
+  <section class="container">
+    <!-- Shows topic resources (temporary) -->
+    <% for(let row = 0; row < 3; row++) {%>
+    <section class="topicSection">
+        <h3>Topic <%= row + 1 %></h3>
+        <article class="row align-items-center">
+          <% for(let col = 0; col < 3; col++) {%>
+              <% include resource.ejs %>
+          <% } %>
+        </article>
     </section>
-    <!-- content -->
+    <% } %>
+  </section>
+  <h2>Liked Resources</h2>
+  <!-- content -->
     <section class="container">
       <!-- Shows topic resources (temporary) -->
       <% for(let row = 0; row < 3; row++) {%>
@@ -42,7 +53,6 @@
           </article>
       </section>
       <% } %>
-
     </section>
-  </body>
+</body>
 </html>

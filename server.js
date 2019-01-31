@@ -43,6 +43,23 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// route setup for testing purposes
+app.get("/users", (req, res) => {
+  res.render("users");
+});
+
+// route setup for testing purposes
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// route setup for testing purposes
+app.post("/users", (req, res) => {
+  res.redirect("/users");
+});
+
+
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
