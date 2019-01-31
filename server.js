@@ -54,6 +54,11 @@ app.get("/login", (req, res) => {
 });
 
 // route setup for testing purposes
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+// route setup for testing purposes
 app.post("/users", (req, res) => {
   res.redirect("/users");
 });
