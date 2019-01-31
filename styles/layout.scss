@@ -17,6 +17,11 @@ body {
     width: 20rem;
     margin-left: 15px;
     margin-right: 20px;
+
+    .btn-container {
+      display: inline-block;
+      padding-left: 0;
+    }
   }
 }
 
@@ -29,4 +34,6 @@ nav {
     width: 100%;
   }
 }
+
+
 
