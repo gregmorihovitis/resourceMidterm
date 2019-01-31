@@ -5,6 +5,27 @@ const settings = require('../knexfile.js')['development'];
 
 const knex = require('knex')(settings);
 
+
+/*******************************
+Description: Returns all resources from table.
+Input: A callback function.
+Output:
+*******************************/
+function findAllResources(cb){
+
+  knex('resources')
+    .select('*')
+    .then(rows => {
+      cb(rows);
+      knex.destroy();
+    })
+    .catch(err => console.log(err.message));
+}
+
+//Test
+findAllResources(function(input){console.log("All resources: ");console.log(input);});
+
+
 /*******************************
 Description: Searches resource table and returns
 resources with matching topic_id
@@ -117,7 +138,7 @@ function likeResource(userId, resourceId){
 };
 
 //Test
-likeResource(1, 3);
+//likeResource(1, 3);
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -134,7 +155,7 @@ function newResource(input){
              user_id: input.user_id,
              topic_id: input.topic_id,
              date_posted: input.date_posted,
-             image_url: input.image_url})
+             img_url: input.img_url})
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {knex.destroy()});
@@ -142,14 +163,14 @@ function newResource(input){
 };
 
 //Test
-// console.log("Testing adding a new resource.");
-// newResource({url: input.url,
-//              title: input.title,
-//              description: input.description,
-//              user_id: input.user_id,
-//              topic_id: input.topic_id,
-//              date_posted: input.date_posted,
-//              image_url: input.image_url});
+//console.log("Testing adding a new resource.");
+// newResource({url: 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes',
+//              title: 'MDN: Express Tutorials',
+//              description: 'A tutorial for using route controlers.',
+//              user_id: 1,
+//              topic_id: 2,
+//              date_posted: '31 Jan 2019',
+//              img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
 
 
 /*******************************
@@ -162,7 +183,8 @@ function newUser(input){
 
   knex('users')
     .insert({name: input.name,
-             email: input.email})
+             email: input.email,
+             occupation: input.occupation})
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {knex.destroy()});
@@ -171,7 +193,7 @@ function newUser(input){
 
 //Test
 // console.log("Testing adding a new user.");
-// newUser({name: input.name, email: input.email});
+// newUser({name: 'Hughes', email: 'hughes@something.com', occupation: 'Cattle Wrangler'});
 
 
 /**
@@ -187,3 +209,15 @@ Example use in route:
   return router;
 
 **/
+
+module.exports = {
+
+  findResourceByTopicId,
+  findResourceByResourceId,
+  findResourceByUserId,
+  findResourceByUserLikes,
+  likeResource,
+  newResource,
+  newUser
+
+};
