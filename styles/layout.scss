@@ -67,6 +67,7 @@ nav {
     }
 
     .form-title {
+      background-color: #343a40;
       color: #fff;
       font-size: 30px;
       padding-top: 30px;
@@ -99,9 +100,11 @@ nav {
         padding-bottom: 10px;
         height: 70px;
 
-        button {
+        .btn-submit {
           width: 100%;
           border-radius: 27px;
+          background-color: #343a40;
+          color: #fff;
         }
     }
 
