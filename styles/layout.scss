@@ -1,5 +1,6 @@
 body {
-  background-color: #EEE;
+  /*background-image: url("/img/bg.jpg");
+  background-size: 1500px 1000px;*/
 
   .mainTagLine {
     font-size: 64px;
@@ -71,7 +72,7 @@ nav {
     justify-content: center;
     float: left;
 
-    .login-form {
+    .login-form, .user-setting-form {
       width: 100%;
       overflow: hidden;
       border-radius: 20px;

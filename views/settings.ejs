@@ -24,26 +24,29 @@
 <body>
   <!-- navbar -->
   <% include navbar.ejs %>
-  <h2>User Settings</h2>
   <!-- content -->
     <section class="container">
-      <!-- Shows user setting form (temporary) -->
-      <form class="user-setting">
-        <div class="form-group">
-          <label for="inputHandle">User handle</label>
-          <input type="text" class="form-control" id="inputHandle" placeholder="Enter handle">
-        </div>
-        <div class="form-group">
-          <label for="inputEmail">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-        <small id="disclaimer" class="form-text text-muted">We'll never share your account information with anyone else.</small>
-        <button type="submit" class="btn btn-dark">Submit</button>
-      </form>
-    </section>
+    <!-- Shows user setting form (temporary) -->
+    <section class="form-container">
+        <form class="user-setting-form">
+            <span class="form-title">User Settings</span>
+            <div class="input-container">
+              <input type="text" class="form-control" placeholder="Handle">
+            </div>
+            <div class="input-container">
+              <input type="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-container">
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+
+            <div class="btn-container">
+              <button type="submit" class="btn-submit">SUBMIT</button>
+            </div>
+            <div class="form-footer">
+              <small id="disclaimer" class="form-text text-danger">*We'll never share your account information with anyone else.</small>
+            </div>
+        </form>
+      </section>
 </body>
 </html>
