@@ -11,7 +11,7 @@
   <!-- Internal CSS files-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/resource-page.css" type="text/css" />
 
   <!-- External JS files-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -30,7 +30,8 @@
   <% include partials/_navbar %>
 
   <article class="resource-container">
-    <img src="/images/graphic.jpg" height="280" width="auto">
+    <!-- Resource includes main image, title, and description -->
+    <img src="/images/graphic.jpg" class="main-img" height="280" width="auto">
     <span class="resource-text">
       <h2>
         <a href="#">How Letraset Transformed Graphic Design</a>
@@ -38,17 +39,21 @@
       <p>Lorizzle ipsizzle dolizzle sit amizzle, cool adipiscing sheezy. Dawg sapien velizzle, mah nizzle volutpizzle,
         suscipizzle sizzle, gravida doggy, bow wow wow...</p>
     </span>
-    <span class="comments-container">
-      <span class="avatar">
-        <img src="/images/avatar.png" height="40" width="auto">
-      </span>
-      <span class="user-handle">
-        <p>Monkey666</p>
-      </span>
-      <span class="comment">
-        <p>This article is soooo useful</p>
-      </span>
-    </span>
+    <!-- Comment submission form -->
+    <section class="new-comment">
+      <h4 id="compose-header">Add comment</h4>
+      <form action="/comments" method="POST">
+        <textarea autofocus name="text" placeholder="What do you think?"></textarea>
+        <input type="submit" value="comment">
+        <span class="counter">140</span>
+      </form>
+    </section>
+    <!-- Comments container: has avatars, usernames, and comment -->
+    <div class="comments-container">
+      <img src="/images/avatar.png" height="40" width="auto" class="avatar">
+      <p class="user-handle">Monkey666</p>
+      <p class="comment">This article is soooo useful</p>
+    </div>
   </article>
 </body>
 

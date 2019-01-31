@@ -3,6 +3,44 @@ body {
 
   .resource-container {
     width: 70%;
-    margin: 10%;
+    margin: 10% 15%;
+    background-color: white;
+    padding: 7% 5%;
+    border-radius: 10px;
+
+    .resource-text {
+      p {
+        margin: 5% 0%;
+      }
+    }
+
+    .main-img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10%;
+      border-radius: 10px;
+    }
+
+    .comments-container {
+      width: 50%;
+      border-style: solid;
+      border-width: 1px;
+    }
+
+    img {
+      width: 40px;
+      border-radius: 20px;
+    }
+
+    form {
+      padding-bottom: 7px;
+      margin-bottom: 15px;
+
+      textarea {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 5px;
+      }
+    }
   }
 }
