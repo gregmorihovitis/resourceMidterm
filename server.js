@@ -60,15 +60,11 @@ app.get("/login", (req, res) => {
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {
-  function testPing (testData){
+  queries.findResourceByResourceId(1, (testData) => {
     console.log('Data Recieved');
     res.redirect(testData[0].url);
-  }
-  queries.findResourceByResourceId(1, testPing);  
-
-  // res.redirect("/users");
+  });  
 });
-
 
 
 app.listen(PORT, () => {
