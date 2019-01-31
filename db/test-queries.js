@@ -1,4 +1,4 @@
- require('dotenv').config({path: '../.env'});
+require('dotenv').config({path: '../.env'});
 
 const settings = require('../knexfile.js')['development'];
 //console.log(settings);
@@ -24,8 +24,7 @@ function findResourceByTopicId(topicId, cb){
 }
 
 //Test
-
-findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
+//findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -49,7 +48,7 @@ function findResourceByResourceId(resourceId, cb){
 
 
 //Test
-findResourceByResourceId(2, function(input){console.log("Testing finding resource by resource id:");console.log(input);});
+//(2, function(input){console.log("Testing finding resource by resource id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -72,7 +71,7 @@ function findResourceByUserId(userId, cb){
 }
 
 //Test
-findResourceByUserId(3, function(input){console.log("Testing finding resource bu user id:");console.log(input);});
+//findResourceByUserId(3, function(input){console.log("Testing finding resource bu user id:");console.log(input);});
 
 
 /*******************************
@@ -96,7 +95,7 @@ function findResourceByUserLikes(userId, cb){
 }
 
 //Test
-findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
+//findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
 
 /*******************************
@@ -108,8 +107,7 @@ Output:
 function likeResource(userId, resourceId){
 
   knex('likes')
-    .insert({id: 4,
-              user_id: userId,
+    .insert({user_id: userId,
              resource_id: resourceId})
     .returning('*')
     .catch(err => console.log(err.message))
@@ -119,7 +117,7 @@ function likeResource(userId, resourceId){
 };
 
 //Test
-likeResource(1, 2);
+likeResource(1, 3);
 
 /*******************************
 Description: Adds a new resource to the resource table.
