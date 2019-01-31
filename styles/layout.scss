@@ -28,12 +28,24 @@ body {
 
 /* navbar styling NOT FINISHED YET */
 nav {
+  background-color: #343a40;
+
   .navbar-nav li {
     display: inline-block;
   }
 
   .form-inline {
     width: 100%;
+
+    .form-control {
+      margin-left: 20px;
+      width: 80%;
+    }
+
+    .btn {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
   }
 }
 
