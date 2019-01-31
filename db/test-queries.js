@@ -24,7 +24,7 @@ function findResourceByTopicId(topicId, cb){
 }
 
 //Test
-//findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
+findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -117,7 +117,7 @@ function likeResource(userId, resourceId){
 };
 
 //Test
-likeResource(1, 3);
+//likeResource(1, 3);
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -187,3 +187,15 @@ Example use in route:
   return router;
 
 **/
+
+module.exports = {
+
+  findResourceByTopicId,
+  findResourceByResourceId,
+  findResourceByUserId,
+  findResourceByUserLikes,
+  likeResource,
+  newResource,
+  newUser
+
+};
