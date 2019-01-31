@@ -5,6 +5,28 @@ const settings = require('../knexfile.js')['development'];
 
 const knex = require('knex')(settings);
 
+
+/*******************************
+Description: Searches resource table and returns
+resources with matching topic_id
+Input: A topic ID and a callbackfunction.
+Output:
+*******************************/
+function findAllResources(cb){
+
+  knex('resources')
+    .select('*')
+    .then(rows => {
+      cb(rows);
+      knex.destroy();
+    })
+    .catch(err => console.log(err.message));
+}
+
+//Test
+findAllResources(function(input){console.log("All resources: ");console.log(input);});
+
+
 /*******************************
 Description: Searches resource table and returns
 resources with matching topic_id
@@ -24,7 +46,7 @@ function findResourceByTopicId(topicId, cb){
 }
 
 //Test
-findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
+//findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns

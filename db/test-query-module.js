@@ -5,6 +5,6 @@
 
 // const knex = require('knex')(settings);
 
-const knexFunctions = require('./test-queries.js');
+const knexFunctions = require('./knex-queries.js');
 
 knexFunctions.findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
