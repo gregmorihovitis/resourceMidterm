@@ -1,14 +1,9 @@
-const knex = require('knex')({
-  client: 'postgresql',
-  connection: {
-    user     : settings.user,
-    password : settings.password,
-    database : settings.database,
-    host     : settings.hostname,
-    port     : settings.port,
-    ssl      : settings.ssl
-  }
-});
+ require('dotenv').config({path: '../.env'});
+
+const settings = require('../knexfile.js')['development'];
+//console.log(settings);
+
+const knex = require('knex')(settings);
 
 /*******************************
 Description: Searches resource table and returns
@@ -29,8 +24,8 @@ function findResourceByTopicId(topicId, cb){
 }
 
 //Test
-console.log("Testing finding resource by topic id");
-findResourceByTopicId(id, function(input){console.log(input)});
+
+findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -54,8 +49,7 @@ function findResourceByResourceId(resourceId, cb){
 
 
 //Test
-console.log("Testing finding resource by resource id");
-findResourceByResourceId(id, function(input){console.log(input)});
+findResourceByResourceId(2, function(input){console.log("Testing finding resource by resource id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -78,8 +72,7 @@ function findResourceByUserId(userId, cb){
 }
 
 //Test
-console.log("Testing finding resource bu user id.");
-findResourceByUserId(id, function(input){console.log(input)});
+findResourceByUserId(3, function(input){console.log("Testing finding resource bu user id:");console.log(input);});
 
 
 /*******************************
@@ -92,9 +85,9 @@ Output:
 function findResourceByUserLikes(userId, cb){
 
   knex('resources')
-  .join('likes', 'resources.user_id', '=', 'likes.user_id')
+  .join('likes', 'resources.id', '=', 'likes.resource_id')
   .select('*')
-  .where('user_id', userId)
+  .where('likes.user_id', userId)
   .then(rows => {
     cb(rows);
     knex.destroy();
@@ -103,8 +96,7 @@ function findResourceByUserLikes(userId, cb){
 }
 
 //Test
-console.log("Testing finding resources by user likes.");
-findResourceByUserLikes(id, function(input){console.log(input)});
+findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
 
 /*******************************
@@ -116,17 +108,18 @@ Output:
 function likeResource(userId, resourceId){
 
   knex('likes')
-    .insert({user_id: userId,
+    .insert({id: 4,
+              user_id: userId,
              resource_id: resourceId})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then(function() {console.log("Testing adding a like.");
+                      knex.destroy()});
 
 };
 
 //Test
-console.log("Testing adding a like.");
-likeResource(userid, resourceid);
+likeResource(1, 2);
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -151,14 +144,14 @@ function newResource(input){
 };
 
 //Test
-console.log("Testing adding a new resource.");
-newResource({url: input.url,
-             title: input.title,
-             description: input.description,
-             user_id: input.user_id,
-             topic_id: input.topic_id,
-             date_posted: input.date_posted,
-             image_url: input.image_url});
+// console.log("Testing adding a new resource.");
+// newResource({url: input.url,
+//              title: input.title,
+//              description: input.description,
+//              user_id: input.user_id,
+//              topic_id: input.topic_id,
+//              date_posted: input.date_posted,
+//              image_url: input.image_url});
 
 
 /*******************************
@@ -179,8 +172,8 @@ function newUser(input){
 };
 
 //Test
-console.log("Testing adding a new user.");
-newUser({name: input.name, email: input.email});
+// console.log("Testing adding a new user.");
+// newUser({name: input.name, email: input.email});
 
 
 /**
