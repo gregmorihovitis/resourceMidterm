@@ -19,8 +19,14 @@ body {
       padding-left: 0;
     }
   }
+
+  .container {
+    padding: 50px 30px 30px 30px;
+    width: 100%;
+  }
 }
 
+/* navbar styling NOT FINISHED YET */
 nav {
   .navbar-nav li {
     display: inline-block;
@@ -33,13 +39,80 @@ nav {
 
 
 .user-setting {
-    width: 500px;
-    display: inline-block;
-    padding-top: 10px;
-    padding-bottom: 23px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+  width: 500px;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
+
+/* login form and registration form styling */
+.form-container {
+    position: relative;
+    width: 450px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+
+    .login-form {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .form-title {
+      color: #fff;
+      font-size: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-bottom: 20px;
+      display: block;
+      text-align: center;
+    }
+
+    .input-container {
+      padding-left: 55px;
+      padding-right: 55px;
+      padding-top: 15px;
+      padding-bottom: 10px;
+      z-index: 1;
+    }
+
+    .form-control {
+      height: 45px;
+      border-radius: 27px;
+      background: #ebebeb;
+    }
+
+    .btn-container {
+        justify-content: center;
+        display: flex;
+        padding-left: 55px;
+        padding-right: 55px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        height: 70px;
+
+        button {
+          width: 100%;
+          border-radius: 27px;
+        }
+    }
+
+    .form-footer {
+      padding-top: 50px;
+      text-align: center;
+      font-size: 15px;
+
+      .to-register {
+        color: #28a745;
+        text-decoration: none;
+      }
+    }
+}

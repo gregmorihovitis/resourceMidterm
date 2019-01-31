@@ -25,25 +25,28 @@
     <% include navbar.ejs %>
     <!-- login form -->
     <section class="container">
-      <form class="login-form">
-          <span class="form-title">Login</span>
-          <div class="input-container">
-            <input type="text" class="form-control" id="inputHandle" placeholder="Handle">
-          </div>
-          <div class="input-container">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-          </div>
-          <div class="input-container">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-          </div>
-          <div class="btn-container">
-            <button type="submit" class="btn btn-dark">Login</button>
-          </div>
-          <div class="form-footer">
-            <span>Don't have an account?</span>
-            <a href="#" class="btn btn-dark">Sign up now</a>
-          </div>
-      </form>
+      <section class="form-container">
+        <form class="login-form">
+            <span class="form-title bg-dark">Login</span>
+            <div class="input-container">
+              <input type="text" class="form-control" placeholder="Handle">
+            </div>
+            <div class="input-container">
+              <input type="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-container">
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="btn-container">
+              <button type="submit" class="btn btn-dark">Login</button>
+            </div>
+            <div class="form-footer">
+              <span>Don't have an account?</span>
+              <!-- redirect to register page -->
+              <a href="#" class="to-register">Sign up now</a>
+            </div>
+        </form>
+      </section>
     </section>
   </body>
 </html>
