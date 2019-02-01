@@ -33,9 +33,9 @@ function renderComments(comments) {
 function createCommentElement(comment) {
   var $commentPassed = `
   <section class="unique-comment">
-        <img src="/images/avatar.png">
-        <p class=${comment.user.name}</p>
-        <p class=${escape(comment.content.text)}</p>
+        <img src="">
+        <p class=${comment.user}</p>
+        <p class=${escape(comment.text)}</p>
       </section>`
   return $commentPassed;
 }
