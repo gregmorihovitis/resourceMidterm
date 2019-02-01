@@ -4,9 +4,10 @@ exports.seed = async function (knex, Promise) {
   await knex('users').del();
   await Promise.all(
     [
-      knex('users').insert({ name: 'Alice', email: 'alice@gmail.com', occupation: 'Bartender' }),
-      knex('users').insert({ name: 'Bob', email: 'bob@gmail.com', occupation: 'Dog-walker' }),
-      knex('users').insert({ name: 'Charlotte', email: 'charly@gmail.com', occupation: 'Food Critic' })
+      knex('users').insert({ name: 'Greg', email: 'greg@greg.com', occupation: 'Video game all star' }),
+      knex('users').insert({ name: 'Julia', email: 'julia@julia.com', occupation: 'Croissant Enthusiast' }),
+      knex('users').insert({ name: 'Max', email: 'max@max.com', occupation: 'Scone Critic' }),
+      knex('users').insert({ name: 'Arthur', email: 'arthur@arthur.com', occupation: 'Artist' })
     ]
   );
   await knex('topics').del();
@@ -15,14 +16,25 @@ exports.seed = async function (knex, Promise) {
       knex('topics').insert({ topic_name: 'Neuroscience' }),
       knex('topics').insert({ topic_name: 'Graphic Design' }),
       knex('topics').insert({ topic_name: 'Octopus' }),
+      knex('topics').insert({ topic_name: 'Creative Code' }),
+
     ]
   );
   await knex('resources').del();
   await Promise.all(
     [
-      knex('resources').insert({ url: 'https://www.sciencedaily.com/releases/2019/01/190129081919.htm', title: 'Engineers translate brain signals directly into speech', description: 'Advance marks critical step toward brain-computer interfaces that hold immense promise for those with limited or no ability to speak', date_posted: '05 Dec 2000', img_url: '', user_id: 1, topic_id: 1 }),
-      knex('resources').insert({ url: 'https://blogs.scientificamerican.com/octopus-chronicles/octopuses-gain-consciousness-according-to-scientists-declaration/', title: 'Octopuses Gain Consciousness ', description: 'Octopuses are smarter than us', date_posted: '05 Dec 2000', img_url: '', user_id: 2, topic_id: 2 }),
-      knex('resources').insert({ url: 'https://www.itsnicethat.com/articles/ken-kagami-bart-works-2-illustration-201118', title: 'Works of Bart', description: 'Slightly mad illustrations', date_posted: '05 Dec 2000', img_url: '', user_id: 3, topic_id: 3 }),
+      knex('resources').insert({ url: 'https://www.sciencedaily.com/releases/2019/01/190129081919.htm', title: 'Engineers translate brain signals directly into speech', description: 'Advance marks critical step toward brain-computer interfaces that hold immense promise for those with limited or no ability to speak', date_posted: '05 Dec 2018', img_url: '/images/brain.jpg', user_id: 1, topic_id: 1 }),
+      knex('resources').insert({ url: 'https://www.popsci.com/space-travel-brain-health', title: 'Space changes your brain in bigger ways than we thought', description: 'Space travel makes you smart', date_posted: '25 Sept 2018', img_url: '/images/space.jpg', user_id: 1, topic_id: 1 }),
+      knex('resources').insert({ url: 'https://arstechnica.com/science/2019/02/watching-brains-on-acid-using-an-mri/', title: 'Watching brains on acid using an MRI', description: 'Cortex overload', date_posted: '25 Nov 2018', img_url: '/images/brain3.jpg', user_id: 1, topic_id: 1 }),
+      knex('resources').insert({ url: 'https://blogs.scientificamerican.com/octopus-chronicles/octopuses-gain-consciousness-according-to-scientists-declaration/', title: 'Octopuses Gain Consciousness ', description: 'Octopuses are smarter than us', date_posted: '08 Jan 2019', img_url: '/images/octo1.jpg', user_id: 2, topic_id: 2 }),
+      knex('resources').insert({ url: 'https://www.vox.com/future-perfect/2019/1/31/18203959/octopus-factory-farms', title: 'Octopuses are smart, inventive creatures. Factory farming them would be a disaster', description: 'Researchers are looking into industrial production of octopus for food. It’s a terrible idea.', date_posted: '18 Jan 2019', img_url: '/images/octo2.jpg', user_id: 2, topic_id: 2 }),
+      knex('resources').insert({ url: 'https://www.independent.co.uk/news/science/armed-with-10000-more-genes-than-humans-scientists-hail-the-intelligence-of-the-octopus-10451893.html', title: 'Scientists hail the intelligence of the octopus', description: 'Scientists have decoded the genome of the octopus and have discovered just how different it is to other intelligent creatures', date_posted: '12 Jan 2019', img_url: '/images/octo3.jpg', user_id: 2, topic_id: 2 }),
+      knex('resources').insert({ url: 'https://www.itsnicethat.com/articles/ken-kagami-bart-works-2-illustration-201118', title: 'Works of Bart', description: 'Slightly mad illustrations', date_posted: '05 Dec 2000', img_url: '/images/bart.jpg', user_id: 3, topic_id: 3 }),
+      knex('resources').insert({ url: 'https://medium.com/gravitdesigner/typography-elements-everyone-needs-to-understand-5fdea82f470d', title: 'Typography Elements Everyone Needs to Understand', description: 'Good overview for beginners', date_posted: '05 Aug 2018', img_url: '/images/typo.png', user_id: 3, topic_id: 3 }),
+      knex('resources').insert({ url: 'https://www.tutpad.com/', title: 'Free Graphic Design Tutorials', description: 'Good place to start learning', date_posted: '22 Oct 2018', img_url: '/images/graphic1.jpg', user_id: 3, topic_id: 3 }),
+      knex('resources').insert({ url: 'https://towardsdatascience.com/an-easy-introduction-to-natural-language-processing-b1e2801291c1?gi=29d8663db476', title: 'An easy introduction to Natural Language Processing', description: 'Using computers to understand human language', date_posted: '01 Feb 2019', img_url: '/images/nlp.jpg', user_id: 4, topic_id: 4 }),
+      knex('resources').insert({ url: 'https://hackernoon.com/creative-coding-basics-4d623af1c647', title: 'Creative coding basics', description: 'Getting started with the canvas in Javascript', date_posted: '01 Feb 2019', img_url: '/images/creative-code.jpg', user_id: 4, topic_id: 4 }),
+      knex('resources').insert({ url: 'http://paperjs.org/about/', title: 'Paper.js — The Swiss Army Knife of Vector Graphics Scripting', description: 'Open source canvas used with JS', date_posted: '01 Jan 2019', img_url: '/images/paperjs.jpg', user_id: 4, topic_id: 4 }),
     ]
   );
   await knex('comments').del();
