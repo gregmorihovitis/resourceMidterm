@@ -1,0 +1,24 @@
+
+<!-- Registration form component -->
+
+<form class="login-form" action="/register" method="POST">
+    <span class="form-title">Register</span>
+    <div class="input-container">
+      <input type="text" class="form-control" placeholder="Handle">
+    </div>
+    <div class="input-container">
+      <input type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="input-container">
+      <input type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="btn-container">
+      <button type="submit" class="btn-submit">REGISTER</button>
+    </div>
+    <div class="form-footer">
+      <span>Already have an account?</span>
+      <!-- redirect to register page -->
+      <!-- temporary routing-->
+      <a href="/login" class="to-register">Log in now</a>
+    </div>
+</form>

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/login-form-and-regi-form.css" type="text/css" />
 
     <!-- External CSS files-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -31,51 +33,11 @@
     <section class="container">
       <!-- login form -->
       <section class="form-container">
-        <form class="login-form" action="/login" method="POST">
-            <span class="form-title">Login</span>
-            <div class="input-container">
-              <input type="text" class="form-control" placeholder="Handle">
-            </div>
-            <div class="input-container">
-              <input type="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="input-container">
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-            <div class="btn-container">
-              <button type="submit" class="btn-submit">LOGIN</button>
-            </div>
-            <div class="form-footer">
-              <span>Don't have an account?</span>
-              <!-- redirect to register page -->
-              <!-- temporary routing-->
-              <a href="/register" class="to-register">Sign up now</a>
-            </div>
-        </form>
+        <% include partials/_login-form.ejs %>
       </section>
       <!-- registration form -->
       <section class="form-container">
-        <form class="login-form" action="/register" method="POST">
-            <span class="form-title">Register</span>
-            <div class="input-container">
-              <input type="text" class="form-control" placeholder="Handle">
-            </div>
-            <div class="input-container">
-              <input type="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="input-container">
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-            <div class="btn-container">
-              <button type="submit" class="btn-submit">REGISTER</button>
-            </div>
-            <div class="form-footer">
-              <span>Already have an account?</span>
-              <!-- redirect to register page -->
-              <!-- temporary routing-->
-              <a href="/login" class="to-register">Log in now</a>
-            </div>
-        </form>
+        <% include partials/_register-form.ejs %>
       </section>
     </section>
   </body>
