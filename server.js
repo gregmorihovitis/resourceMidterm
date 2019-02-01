@@ -77,6 +77,38 @@ app.get("/resource", (req, res) => {
   res.render("resource");
 });
 
+// Route for when user searches recources ** -Max - NEW
+app.get("/search", (req, res) => {
+  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+
+    let pageResources = json(searchResults);
+
+    res.render('resource', pageResources);
+  });
+});
+
+// Route for when user clicks on a resource ** -Max - NEW
+app.get("/resources/:resourceId", (req, res) => {
+  queries.findResourceByResourceId(req.body.resourceId, (resource) => {
+
+     let pageResources = json(resource);
+
+     res.render('search', pageResources);
+  })
+})
+
+// Route for getting to a users information page ** -Max NEW
+app.get("/users/:userId", (req, res) => {
+  queries.findUserById(request.params.userId, (userInfo) => {
+
+    let pageResources = json(userInfo);
+
+    res.render('users', pageResources);
+  });
+});
+
+
+
 // route setup for testing purposes
 app.post("/users", (req, res) => {
   queries.findResourceByResourceId(1, (testData) => {
@@ -96,6 +128,12 @@ app.post('/login', (req, res) => {
 app.post("/register", (req, res) => {
   res.redirect("/");
 });
+
+// Route for loggin out a user. ** - Max NEW
+app.put("/logout", (req, res) => {
+  req.session = null;
+  res.redirect('/login');
+})
 
 
 app.listen(PORT, () => {
