@@ -1,5 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
 body {
   background-color: #eee;
+
+  h1 {
+    font-family: Inconsolata;
+  }
+
+  h2 {
+    font-family: Inconsolata;
+  }
+  h3 {
+    font-family: Inconsolata;
+  }
+
+  h4 {
+    font-family: Inconsolata;
+  }
+
+  h5 {
+    font-family: Inconsolata;
+  }
+
+  p {
+    font-family: Inconsolata;
+  }
+
+  span {
+    font-family: Inconsolata;
+  }
 
   .resource-container {
     width: 70%;
@@ -11,6 +40,7 @@ body {
     .resource-text {
       p {
         margin: 5% 0%;
+        font-family: Inconsolata;
       }
     }
 
@@ -34,6 +64,7 @@ body {
 
         .avatar {
           display: inline-block;
+          border-radius: 20px;
         }
 
         .user-handle {
@@ -50,7 +81,6 @@ body {
 
     img {
       width: 40px;
-      border-radius: 20px;
     }
 
     form {

@@ -41,7 +41,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 app.use(cookieSession({
-  name: 'name',
+  name: 'id',
   keys: ['key1']
 }));
 
@@ -52,8 +52,8 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/new", (req, res) => {
-  res.render("addNewResource");
+app.get("/users", (req, res) => {
+  res.render("users");
 });
 
 // route setup for testing purposes
@@ -62,7 +62,11 @@ app.get("/login", (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-  res.render('register');
+  res.render('login');
+});
+
+app.get('/test', (req, res) => {
+  res.render('popTest');
 });
 
 app.get("/popTest", (req, res) => {
@@ -71,10 +75,15 @@ app.get("/popTest", (req, res) => {
   });
 });
 
-
-// route setup for testing purposes
+// route setup for testing purposes -JR PLZ LEAVE
 app.get("/resource", (req, res) => {
-  res.render("resource");
+  queries.findCommentByResourceId(1, (comments) => {
+    const templateVars = {
+      comments: JSON.stringify(comments)
+      //just leave comments and remove json.stringify and parenthesis after**********
+    }
+    res.render("resource", templateVars);
+  });
 });
 
 // Route for when user searches recources ** -Max - NEW
@@ -131,33 +140,36 @@ app.get("/resources/:userId", (req, res) => {
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {
-  queries.findResourceByResourceId(1, (testData) => {
-    req.sessions.name = testData[0].title;
+  queries.findResourceByResourceId(req.session.id, (testData) => {
     console.log('Data Recieved');
     res.redirect(testData[0].url);
   });
 });
 
 app.post('/login', (req, res) => {
-  let testName = 'testUser';
-  req.session.name = req.body.loginHandle;
-  console.log(req.session.name);
+  // let testid = 'testUser';
+  req.session.id = req.body.loginHandle;
+  console.log(req.session.id);
   res.redirect("/");
 });
 
 
 app.post("/register", (req, res) => {
+  req.session.id = req.body.registerHandle;
+  queries.newUser(req.session.id);
+  console.log('registered');
   res.redirect("/");
 });
 
+
 // Route for loggin out a user. ** - Max NEW
-app.put("/logout", (req, res) => {
+app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect('/login');
 });
 
 // Route for user creating a new resource     ** -Max NEW
-app.put("/resources/new", (req, res) => {
+app.post("/resources/new", (req, res) => {
 
   let newResource = {url: req.body.url,
              description: req.body.description,
@@ -174,13 +186,30 @@ app.put("/resources/new", (req, res) => {
 // Route for user liking a resource         ** -Max NEW
 app.put('/recources/like', (req, res) => {
 
-  queries.likeResource(req.session.name, resourceId);
+  queries.likeResource(req.session.id, resourceId);
 
 });
 
 // Route for user rating a resource       ** -Max
 
+//NEW comment routes - Julia
+app.post("/comments", (req, res) => {
+  if (!req.body.text) {
+    res.status(400).json({ error: 'invalid request: no data in POST body' });
+    return;
+  }
+  //make function that checks if a user is logged in
+  // const user = req.body.user ?
+  const comment = {
+    user: req.body.user,
+    text: req.body.text
+  }
+  res.json(comment)
+});
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
