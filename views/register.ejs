@@ -26,12 +26,12 @@
   </head>
   <body>
     <!-- navbar -->
-    <% include navbar.ejs %>
+    <% include partials/_navbar.ejs %>
 
     <section class="container">
       <!-- login form -->
       <section class="form-container">
-        <form class="login-form">
+        <form class="login-form" action="/login" method="POST">
             <span class="form-title">Login</span>
             <div class="input-container">
               <input type="text" class="form-control" placeholder="Handle">
@@ -55,7 +55,7 @@
       </section>
       <!-- registration form -->
       <section class="form-container">
-        <form class="login-form">
+        <form class="login-form" action="/register" method="POST">
             <span class="form-title">Register</span>
             <div class="input-container">
               <input type="text" class="form-control" placeholder="Handle">
