@@ -1,3 +1,4 @@
+<!-- Route: /:userid/new -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,22 +24,33 @@
   </head>
   <body>
     <!-- navbar -->
-     <% include partials/_navbar.ejs %>
+    <% include navbar.ejs %>
     <!-- -->
     <section class="container">
-      <section class="tagline-container">
-        <h1 class="mainTagLine">Learning starts here</h1>
-        <p class="subTagLine">Discover ideas from all over the web, and get personalized recommendations based on the topics you love. Get a taste below!</p>
+      <!-- add new resource form here -->
+      <section class="form-container">
+        <form class="add-resource-form">
+            <span class="form-title">Submit A New Resource</span>
+            <div class="input-container">
+              <input type="text" class="form-control" placeholder="URL">
+            </div>
+            <div class="input-container">
+              <input type="text" class="form-control" placeholder="Title">
+            </div>
+            <div class="input-container">
+              <input type="textarea" class="form-control" placeholder="Description">
+            </div>
+            <div class="input-container">
+              <input type="text" class="form-control" placeholder="Topic">
+            </div>
+            <div class="btn-container">
+              <button type="submit" class="btn-submit">SUBMIT</button>
+            </div>
+            <div class="form-footer">
+              <small class="thank-you-text">Thank you for your contribution!</small>
+            </div>
+        </form>
       </section>
-
     </section>
-    <!-- content -->
-    <section id = 'resourceContainer' class="container">
-      <!-- Shows topic resources (temporary) -->
-      <% for(let row = 0; row < 3; row++) {%>
-      <section class="topicSection">
-          <h3>Topic <%= row + 1 %></h3>
-          <article id = 'resourceRow' class="row align-items-center"> 
-          </article>
-      </section>
-      <% } %>
+  </body>
+</html>
