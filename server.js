@@ -49,6 +49,11 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
+app.get("/users", (req, res) => {
+  res.render("users");
+});
+
+// route setup for testing purposes
 app.get("/settings", (req, res) => {
   res.render("settings");
 });
