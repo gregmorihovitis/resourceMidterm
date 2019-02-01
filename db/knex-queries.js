@@ -16,6 +16,10 @@ function findAllResources(cb){
     .catch(err => console.log(err.message));
 }
 
+//Test
+//findAllResources(function(input){console.log("All resources: ");console.log(input);});
+
+
 /*******************************
 Description: Searches resource table and returns
 resources with matching topic_id
@@ -108,6 +112,66 @@ function findResourceByUserLikes(userId, cb){
 //Test
 //findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
+/*******************************
+Description: Searches User
+Input: A user ID and a callbackfunction.
+Output:
+*******************************/
+
+function findCommentByResourceId(resourceId, cb){
+
+  knex('comments')
+  .select('*')
+  .where('resource_id', resourceId)
+  .then(rows => {
+    cb(rows);
+    knex.destroy();
+  })
+  .catch(err => console.log(err.message));
+
+}
+
+//Test
+//findCommentByResourceId(1, function(input){console.log("Testing finding comment by resourceId:");console.log(input);});
+
+
+/*******************************
+Description: Searches User
+Input: A user ID and a callbackfunction.
+Output:
+*******************************/
+
+function findUserById(userId, cb){
+
+  knex('users')
+  .select('*')
+  .where('id', userId)
+  .then(rows => {
+    cb(rows);
+    knex.destroy();
+  })
+  .catch(err => console.log(err.message));
+
+}
+
+/*******************************
+Description: Change information of user.
+Input: User data.
+Output:
+*******************************/
+
+function updateUserInfo(userId, userInfo){
+
+  knex('users')
+  .where('id', userId)
+  .update({name: userInfo.name})
+  .then(knex.destroy())
+  .catch(err => console.log(err.message));
+
+}
+//Test
+console.log("Updating user info");
+updateUserInfo(5, {name: 'Max2'});
 
 /*******************************
 Description: Adds a like to the  likes table.
@@ -128,7 +192,29 @@ function likeResource(userId, resourceId){
 };
 
 //Test
-// likeResource(1, 3);
+//likeResource(1, 3);
+
+/*******************************
+Description: Adds a rating for a resource.
+Input: A rating, user ID resource ID.
+Output:
+*******************************/
+
+function rateResource(userId, resourceId, rating){
+
+  knex('ratings')
+    .insert({rating: rating,
+             user_id: userId,
+             resource_id: resourceId})
+    .returning('*')
+    .catch(err => console.log(err.message))
+    .then(function() {console.log("Testing adding a rating.");
+                      knex.destroy()});
+
+};
+
+//Test
+//rateResource(1, 2, 5);
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -145,7 +231,7 @@ function newResource(input){
              user_id: input.user_id,
              topic_id: input.topic_id,
              date_posted: input.date_posted,
-             image_url: input.image_url})
+             img_url: input.img_url})
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {knex.destroy()});
@@ -153,15 +239,34 @@ function newResource(input){
 };
 
 //Test
-// console.log("Testing adding a new resource.");
-// newResource({url: input.url,
-//              title: input.title,
-//              description: input.description,
-//              user_id: input.user_id,
-//              topic_id: input.topic_id,
-//              date_posted: input.date_posted,
-//              image_url: input.image_url});
+//console.log("Testing adding a new resource.");
+// newResource({url: 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes',
+//              title: 'MDN: Express Tutorials',
+//              description: 'A tutorial for using route controlers.',
+//              user_id: 1,
+//              topic_id: 2,
+//              date_posted: '31 Jan 2019',
+//              img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
 
+/*******************************
+Description: Deletes a resource to the resource table.
+Input: An input object with all the new resource data.
+Output: Adds new resource to the recource table.
+*******************************/
+
+function deleteResource(resourceId){
+
+  knex('resources')
+    .where('id', resourceId)
+    .del()
+    .catch(err => console.log(err.message))
+    .then(function() {console.log("Testing deleting a resource.");
+                      knex.destroy()});
+
+};
+
+//Test
+//deleteResource(4);
 
 /*******************************
 Description: Adds a new user to the user table.
@@ -173,7 +278,8 @@ function newUser(input){
 
   knex('users')
     .insert({name: input.name,
-             email: input.email})
+             email: input.email,
+             occupation: input.occupation})
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {knex.destroy()});
@@ -182,7 +288,7 @@ function newUser(input){
 
 //Test
 // console.log("Testing adding a new user.");
-// newUser({name: input.name, email: input.email});
+// newUser({name: 'Hughes', email: 'hughes@something.com', occupation: 'Cattle Wrangler'});
 
 
 /**
@@ -206,8 +312,14 @@ module.exports = {
   findResourceByResourceId,
   findResourceByUserId,
   findResourceByUserLikes,
+  findUserById,
+  findCommentByResourceId,
+  updateUserInfo,
   likeResource,
+  rateResource,
+  rateResource,
   newResource,
+  deleteResource,
   newUser
 
 };
