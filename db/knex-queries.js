@@ -23,7 +23,7 @@ function findAllResources(cb){
 }
 
 //Test
-findAllResources(function(input){console.log("All resources: ");console.log(input);});
+//findAllResources(function(input){console.log("All resources: ");console.log(input);});
 
 
 /*******************************
@@ -118,6 +118,68 @@ function findResourceByUserLikes(userId, cb){
 //Test
 //findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
+/*******************************
+Description: Searches User
+Input: A user ID and a callbackfunction.
+Output:
+*******************************/
+
+function findCommentByResourceId(resourceId, cb){
+
+  knex('comments')
+  .select('*')
+  .where('resource_id', resourceId)
+  .then(rows => {
+    cb(rows);
+    knex.destroy();
+  })
+  .catch(err => console.log(err.message));
+
+}
+
+//Test
+findCommentByResourceId(1, function(input){console.log("Testing finding comment by resourceId:");console.log(input);});
+
+
+/*******************************
+Description: Searches User
+Input: A user ID and a callbackfunction.
+Output:
+*******************************/
+
+function findUserById(userId, cb){
+
+  knex('users')
+  .select('*')
+  .where('id', userId)
+  .then(rows => {
+    cb(rows);
+    knex.destroy();
+  })
+  .catch(err => console.log(err.message));
+
+}
+
+/*******************************
+Description: Change information of user.
+Input: User data.
+Output:
+*******************************/
+
+function updateUserInfo(userId, userInfo){
+
+  knex('users')
+  .where('id', userId)
+  .update({name: userInfo.name,
+           email: userInfo.email,
+           occupation: userInfo.occupation})
+  .then(knex.destroy())
+  .catch(err => console.log(err.message));
+
+}
+//Test
+// console.log("Updating user info");
+// updateUserInfo(5, {name: 'Max2', email: 'max2@sample.com', occupation: 'Stunt Driver' });
 
 /*******************************
 Description: Adds a like to the  likes table.
@@ -139,6 +201,25 @@ function likeResource(userId, resourceId){
 
 //Test
 //likeResource(1, 3);
+
+/*******************************
+Description: Adds a rating for a resource.
+Input: A rating, user ID resource ID.
+Output:
+*******************************/
+
+function rateResource(userId, resourceId, rating){
+
+  knex('ratings')
+    .insert({rating: rating,
+             user_id: userId,
+             resource_id: resourceId})
+    .returning('*')
+    .catch(err => console.log(err.message))
+    .then(function() {console.log("Testing adding a rating.");
+                      knex.destroy()});
+
+};
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -172,6 +253,21 @@ function newResource(input){
 //              date_posted: '31 Jan 2019',
 //              img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
 
+/*******************************
+Description: Deletes a resource to the resource table.
+Input: An input object with all the new resource data.
+Output: Adds new resource to the recource table.
+*******************************/
+
+function deleteResource(resourceId){
+
+  knex('resources')
+    .where('id', resourceId)
+    .del()
+    .catch(err => console.log(err.message))
+    .then(function() {knex.destroy()});
+
+};
 
 /*******************************
 Description: Adds a new user to the user table.
@@ -212,12 +308,18 @@ Example use in route:
 
 module.exports = {
 
+  findAllResources,
   findResourceByTopicId,
   findResourceByResourceId,
   findResourceByUserId,
   findResourceByUserLikes,
+  findUserById,
+  findCommentByResourceId,
+  updateUserInfo,
   likeResource,
+  rateResource,
   newResource,
+  deleteResource,
   newUser
 
 };
