@@ -1,0 +1,24 @@
+
+<!-- Login form component -->
+
+<form class="login-form" action="/login" method="POST">
+    <span class="form-title">Login</span>
+    <div class="input-container">
+      <input id="loginHandle" type="text" class="form-control" placeholder="Handle">
+    </div>
+    <div class="input-container">
+      <input id="loginEmail" type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="input-container">
+      <input type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="btn-container">
+      <button type="submit" class="btn-submit">LOGIN</button>
+    </div>
+    <div class="form-footer">
+      <span>Don't have an account?</span>
+      <!-- redirect to register page -->
+      <!-- temporary routing-->
+      <a href="/register" class="to-register">Sign up now</a>
+    </div>
+</form>
