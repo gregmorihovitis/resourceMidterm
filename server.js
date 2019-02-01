@@ -86,6 +86,58 @@ app.get("/resource", (req, res) => {
   });
 });
 
+// Route for when user searches recources ** -Max - NEW
+app.get("/search", (req, res) => {
+  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+
+    let pageResources = json(searchResults);
+
+    res.render('resource', pageResources);
+  });
+});
+
+// Route for when user clicks on a resource ** -Max - NEW
+app.get("/resources/:resourceId", (req, res) => {
+  queries.findResourceByResourceId(req.body.resourceId, (resource) => {
+
+     let pageResources = json(resource);
+
+     res.render('search', pageResources);
+  })
+})
+
+// Route for getting to a users information page ** -Max NEW
+app.get("/users/:userId", (req, res) => {
+  queries.findUserById(request.params.userId, (userInfo) => {
+
+    let pageResources = json(userInfo);
+
+    res.render('users', pageResources);
+  });
+});
+
+// Route for getting all of a users resources
+// and liked resources                            ** -Max NEW
+app.get("/resources/:userId", (req, res) => {
+
+  let pageResources = { userResources: {},
+                        likedResources: {} };
+
+
+  queries.findResourceByUserId(request.params.userId, (userResources) => {
+    pageResources.userResources = json(userResources);
+  });
+
+  queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
+    pageResources.likedResources = json(likedResources);
+  });
+
+  res.render('index', pageResources);
+
+});
+
+
+
 // route setup for testing purposes
 app.post("/users", (req, res) => {
   queries.findResourceByResourceId(req.session.id, (testData) => {
@@ -101,12 +153,44 @@ app.post('/login', (req, res) => {
   res.redirect("/");
 });
 
+
 app.post("/register", (req, res) => {
   req.session.id = req.body.registerHandle;
   queries.newUser(req.session.id);
   console.log('registered');
   res.redirect("/");
 });
+
+
+// Route for loggin out a user. ** - Max NEW
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect('/login');
+});
+
+// Route for user creating a new resource     ** -Max NEW
+app.post("/resources/new", (req, res) => {
+
+  let newResource = {url: req.body.url,
+             description: req.body.description,
+             user_id: req.body.userId,
+             topic_id: req.body.topicID,
+             date_posted: req.body.date,
+             img_url: req.body.imgUrl};
+
+  queries.addResource(newResource);
+
+  res.redirect('/resources/:userId');
+});
+
+// Route for user liking a resource         ** -Max NEW
+app.put('/recources/like', (req, res) => {
+
+  queries.likeResource(req.session.id, resourceId);
+
+});
+
+// Route for user rating a resource       ** -Max
 
 //NEW comment routes - Julia
 app.post("/comments", (req, res) => {
@@ -122,6 +206,7 @@ app.post("/comments", (req, res) => {
   }
   res.json(comment)
 });
+
 
 
 app.listen(PORT, () => {

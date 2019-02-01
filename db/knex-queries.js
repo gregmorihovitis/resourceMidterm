@@ -49,14 +49,12 @@ Output:
 function findResourceByResourceId(resourceId, cb) {
 
   knex('resources')
-    .select('*')
-    .where('id', resourceId)
-    .then(rows => {
-      cb(rows);
-
-    })
-    .catch(err => console.log('find resouce 2', err.message));
-
+  .select('*')
+  .where('id', resourceId)
+  .then(rows => {
+    cb(rows);
+  })
+  .catch(err => console.log('find resouce 2', err.message));
 }
 
 
@@ -73,13 +71,12 @@ Output:
 function findResourceByUserId(userId, cb) {
 
   knex('resources')
-    .select('*')
-    .where('user_id', userId)
-    .then(rows => {
-      cb(rows);
-    })
-    .catch(err => console.log(err.message));
-
+  .select('*')
+  .where('user_id', userId)
+  .then(rows => {
+    cb(rows);
+  })
+  .catch(err => console.log(err.message));
 }
 
 //Test
@@ -163,13 +160,29 @@ Output:
 function findUserById(userId, cb) {
 
   knex('users')
-    .select('*')
-    .where('id', userId)
-    .then(rows => {
-      cb(rows);
-    })
-    .catch(err => console.log(err.message));
+  .select('*')
+  .where('id', userId)
+  .then(rows => {
+    cb(rows);
+  })
+  .catch(err => console.log(err.message));
+}
 
+/*******************************
+Description: Finds a user by name
+Input: A user name and a callbackfunction.
+Output:
+*******************************/
+
+function findUserByName(userName, cb){
+
+  knex('users')
+  .select('*')
+  .where('id', userName)
+  .then(rows => {
+    cb(rows);
+  })
+  .catch(err => console.log(err.message));
 }
 
 /*******************************
@@ -185,7 +198,6 @@ function updateUserInfo(userId, userInfo) {
     .update({ name: userInfo.name })
     .then()
     .catch(err => console.log(err.message));
-
 }
 //Test
 // console.log("Updating user info");
@@ -209,7 +221,6 @@ function likeResource(userId, resourceId) {
     .then(function () {
       console.log("Testing adding a like.");
     });
-
 };
 
 //Test
@@ -234,7 +245,6 @@ function rateResource(userId, resourceId, rating) {
     .then(function () {
       console.log("Testing adding a rating.");
     });
-
 };
 
 //Test
@@ -261,7 +271,6 @@ function newResource(input) {
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function () { console.log() });
-
 };
 
 //Test
@@ -289,7 +298,6 @@ function deleteResource(resourceId) {
     .then(function () {
       console.log("Testing deleting a resource.");
     });
-
 };
 
 //Test
@@ -338,10 +346,10 @@ module.exports = {
   findResourceByUserId,
   findResourceByUserLikes,
   findUserById,
+  findUserByName,
   findCommentByResourceId,
   updateUserInfo,
   likeResource,
-  rateResource,
   rateResource,
   newResource,
   deleteResource,
