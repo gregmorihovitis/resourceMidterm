@@ -48,8 +48,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-<<<<<<< HEAD
-=======
 // route setup for testing purposes
 app.get("/users", (req, res) => {
   res.render("users");
@@ -81,9 +79,9 @@ app.post("/users", (req, res) => {
   queries.findResourceByResourceId(1, (testData) => {
     console.log('Data Recieved');
     res.redirect(testData[0].url);
-  });  
+  });
 });
->>>>>>> f1369f65d4bb549f676664fe8af8e47b5f5ffd45
+
 
 
 
