@@ -28,11 +28,12 @@ function renderComments(comments) {
   }
 }
 
+
 //Creates individual comment container (usernamename, avatar, comment, rating) after comment is submitted
 function createCommentElement(comment) {
   var $commentPassed = `
   <section class="unique-comment">
-        <img src=${comment.user.avatars}>
+        <img src="/images/avatar.png">
         <p class=${comment.user.name}</p>
         <p class=${escape(comment.content.text)}</p>
       </section>`
