@@ -71,7 +71,7 @@ app.get("/popTest", (req, res) => {
   });
 });
 
-// route setup for testing purposes
+// route setup for testing purposes -JR PLZ LEAVE
 app.get("/resource", (req, res) => {
   queries.findCommentByResourceId(1, (comments) => {
     const templateVars = {

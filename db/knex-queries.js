@@ -140,6 +140,8 @@ function findCommentByResourceId(resourceId, cb) {
   knex('comments')
     .select('*')
     .where('resource_id', resourceId)
+    //edited join -JR
+    .join("users", "comments.id", "users.id")
     .then(rows => {
       cb(rows);
     })
