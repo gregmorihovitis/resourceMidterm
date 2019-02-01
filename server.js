@@ -2,20 +2,22 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+
+const queries = require("./db/knex-queries.js");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -38,10 +40,50 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+
+
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+<<<<<<< HEAD
+=======
+// route setup for testing purposes
+app.get("/users", (req, res) => {
+  res.render("users");
+});
+
+// route setup for testing purposes
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get('/test', (req, res) => {
+  res.render('popTest');
+});
+
+app.get("/popTest", (req, res) => {
+  queries.findAllResources((popTest) => {
+    res.json(popTest);
+  });
+});
+
+
+// route setup for testing purposes
+app.get("/resource", (req, res) => {
+  res.render("resource");
+});
+
+// route setup for testing purposes
+app.post("/users", (req, res) => {
+  queries.findResourceByResourceId(1, (testData) => {
+    console.log('Data Recieved');
+    res.redirect(testData[0].url);
+  });  
+});
+>>>>>>> f1369f65d4bb549f676664fe8af8e47b5f5ffd45
 
 
 

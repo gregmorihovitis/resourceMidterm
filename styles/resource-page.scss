@@ -1,0 +1,67 @@
+body {
+  background-color: #eee;
+
+  .resource-container {
+    width: 70%;
+    margin: 10% 15%;
+    background-color: white;
+    padding: 7% 5%;
+    border-radius: 10px;
+
+    .resource-text {
+      p {
+        margin: 5% 0%;
+      }
+    }
+
+    .main-img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10%;
+      border-radius: 10px;
+    }
+
+    .comments-container {
+      width: 100%;
+      border-style: solid;
+      border-width: 1px;
+
+      .unique-comment {
+        background-color: aliceblue;
+        border-radius: 17px;
+        padding: 12px 14px;
+        margin-bottom: 8px;
+
+        .avatar {
+          display: inline-block;
+        }
+
+        .user-handle {
+          display: inline;
+          padding-left: 10px;
+        }
+
+        .comment {
+          padding-top: 10px;
+          display: inherit;
+        }
+      }
+    }
+
+    img {
+      width: 40px;
+      border-radius: 20px;
+    }
+
+    form {
+      padding-bottom: 7px;
+      margin-bottom: 15px;
+
+      textarea {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Welcome to Resource Wall</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <!-- External CSS files-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- External CSS files-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
 
-    <!-- Internal CSS files-->
+  <!-- Internal CSS files-->
 
-    <!-- External JS files-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <!-- External JS files-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
 
-    <!-- Internal JS files-->
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- Internal JS files-->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
+
 <body>
   <!-- navbar -->
-  <% include navbar.ejs %>
+  <% include partials/_navbar.ejs %>
   <h2>My Resources</h2>
   <!-- content -->
   <section class="container">
     <!-- Shows topic resources (temporary) -->
     <% for(let row = 0; row < 3; row++) {%>
     <section class="topicSection">
-        <h3>Topic <%= row + 1 %></h3>
-        <article class="row align-items-center">
-          <% for(let col = 0; col < 3; col++) {%>
-              <% include resource.ejs %>
-          <% } %>
-        </article>
+      <h3>Topic
+        <%= row + 1 %>
+      </h3>
+      <article class="row align-items-center">
+        <% for(let col = 0; col < 3; col++) {%>
+        <% include partials/_my-resources.ejs %>
+        <% } %>
+      </article>
     </section>
     <% } %>
   </section>
   <h2>Liked Resources</h2>
   <!-- content -->
-    <section class="container">
-      <!-- Shows topic resources (temporary) -->
-      <% for(let row = 0; row < 3; row++) {%>
-      <section class="topicSection">
-          <h3>Topic <%= row + 1 %></h3>
-          <article class="row align-items-center">
-            <% for(let col = 0; col < 3; col++) {%>
-                <% include resource.ejs %>
-            <% } %>
-          </article>
-      </section>
-      <% } %>
+  <section class="container">
+    <!-- Shows topic resources (temporary) -->
+    <% for(let row = 0; row < 3; row++) {%>
+    <section class="topicSection">
+      <h3>Topic
+        <%= row + 1 %>
+      </h3>
+      <article class="row align-items-center">
+        <% for(let col = 0; col < 3; col++) {%>
+        <% include partials/_my-resources.ejs %>
+        <% } %>
+      </article>
     </section>
+    <% } %>
+  </section>
 </body>
+
 </html>
