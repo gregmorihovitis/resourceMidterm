@@ -75,9 +75,15 @@ app.get("/popTest", (req, res) => {
   });
 });
 
-// route setup for testing purposes
+// route setup for testing purposes -JR PLZ LEAVE
 app.get("/resource", (req, res) => {
-  res.render("resource");
+  queries.findCommentByResourceId(1, (comments) => {
+    const templateVars = {
+      comments: JSON.stringify(comments)
+      //just leave comments and remove json.stringify and parenthesis after**********
+    }
+    res.render("resource", templateVars);
+  });
 });
 
 // route setup for testing purposes
@@ -116,6 +122,7 @@ app.post("/comments", (req, res) => {
   }
   res.json(comment)
 });
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

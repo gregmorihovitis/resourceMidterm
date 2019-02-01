@@ -58,13 +58,20 @@
     </section>
     <!-- Comments container: has avatars, usernames, and comment -->
     <div class="comments-container">
+      <% JSON.parse(comments).forEach(function(comment){ %>
       <section class="unique-comment">
         <img src="/images/avatar.png" height="40" width="auto" class="avatar">
-        <p class="user-handle">Monkey666</p>
-        <span class="comment">This article is soooo useful</span>
+        <p class="user-handle">
+          <%= comment.name %>
+        </p>
+        <span class="comment">
+          <%= comment.comment %></span>
       </section>
+      <% }); %>
+
     </div>
   </article>
+  <%= comments %>
 </body>
 
 </html>
