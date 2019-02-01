@@ -64,6 +64,11 @@ app.get("/settings", (req, res) => {
 });
 
 // route setup for testing purposes
+app.get("/new", (req, res) => {
+  res.render("addNewResource");
+});
+
+// route setup for testing purposes
 app.post("/users", (req, res) => {
   res.redirect("/users");
 });
