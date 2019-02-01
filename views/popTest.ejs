@@ -26,18 +26,7 @@
   <% include navbar.ejs %>
   <h2>My Resources</h2>
   <!-- content -->
-  <section class="container">
-    <!-- Shows topic resources (temporary) -->
-    <% for(let row = 0; row < 3; row++) {%>
-    <section class="topicSection">
-        <h3>Topic <%= row + 1 %></h3>
-        <article class="row align-items-center">
-          <% for(let col = 0; col < 3; col++) {%>
-              <% include resource.ejs %>
-          <% } %>
-        </article>
-    </section>
-    <% } %>
+  <section id = 'resourceContainer' class="container">
   </section>
   <h2>Liked Resources</h2>
   <!-- content -->

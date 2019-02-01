@@ -58,6 +58,17 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get('/test', (req, res) => {
+  res.render('popTest');
+});
+
+app.get("/popTest", (req, res) => {
+  queries.findAllResources((popTest) => {
+    res.json(popTest);
+  });
+});
+
+
 // route setup for testing purposes
 app.post("/users", (req, res) => {
   queries.findResourceByResourceId(1, (testData) => {
@@ -65,6 +76,8 @@ app.post("/users", (req, res) => {
     res.redirect(testData[0].url);
   });  
 });
+
+
 
 
 app.listen(PORT, () => {

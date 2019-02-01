@@ -5,6 +5,17 @@ const settings = require('../knexfile.js')['development'];
 
 const knex = require('knex')(settings);
 
+function findAllResources(cb){
+
+  knex('resources')
+    .select('*')
+    .then(rows => {
+      cb(rows);
+      knex.destroy();
+    })
+    .catch(err => console.log(err.message));
+}
+
 /*******************************
 Description: Searches resource table and returns
 resources with matching topic_id
@@ -190,6 +201,7 @@ Example use in route:
 
 module.exports = {
 
+  findAllResources,
   findResourceByTopicId,
   findResourceByResourceId,
   findResourceByUserId,

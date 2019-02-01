@@ -10,6 +10,7 @@ body {
   }
 
   .card {
+    height: 220px;
     width: 20rem;
     margin-left: 15px;
     margin-right: 20px;
@@ -17,6 +18,18 @@ body {
     .btn-container {
       display: inline-block;
       padding-left: 0;
+    }
+
+    .rTitle{
+      height: 50px;
+      font-weight: bold;
+    }
+
+    .rContent{
+      height: 60px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 }
