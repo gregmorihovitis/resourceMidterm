@@ -49,8 +49,8 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/users", (req, res) => {
-  res.render("users");
+app.get("/new", (req, res) => {
+  res.render("addNewResource");
 });
 
 // route setup for testing purposes
@@ -58,8 +58,8 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get('/test', (req, res) => {
-  res.render('popTest');
+app.get('/register', (req, res) => {
+  res.render('register');
 });
 
 app.get("/popTest", (req, res) => {
@@ -82,7 +82,13 @@ app.post("/users", (req, res) => {
   });
 });
 
+app.post("/login", (req, res) => {
+  res.redirect("/");
+});
 
+app.post("/register", (req, res) => {
+  res.redirect("/");
+});
 
 
 
