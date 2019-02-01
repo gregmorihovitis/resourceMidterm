@@ -77,7 +77,6 @@ function findResourceByUserId(userId, cb){
   .where('user_id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 
@@ -102,7 +101,6 @@ function findResourceByUserLikes(userId, cb){
   .where('likes.user_id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 }
@@ -166,7 +164,6 @@ function findUserById(userId, cb){
   .where('id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 
@@ -183,7 +180,7 @@ function updateUserInfo(userId, userInfo){
   knex('users')
   .where('id', userId)
   .update({name: userInfo.name})
-  .then(knex.destroy())
+  .then()
   .catch(err => console.log(err.message));
 
 }
@@ -205,7 +202,7 @@ function likeResource(userId, resourceId){
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {console.log("Testing adding a like.");
-                      knex.destroy()});
+                      });
 
 };
 
@@ -227,7 +224,7 @@ function rateResource(userId, resourceId, rating){
     .returning('*')
     .catch(err => console.log(err.message))
     .then(function() {console.log("Testing adding a rating.");
-                      knex.destroy()});
+                      });
 
 };
 
@@ -252,7 +249,7 @@ function newResource(input){
              img_url: input.img_url})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then(function() {console.log()});
 
 };
 
@@ -279,7 +276,7 @@ function deleteResource(resourceId){
     .del()
     .catch(err => console.log(err.message))
     .then(function() {console.log("Testing deleting a resource.");
-                      knex.destroy()});
+                      });
 
 };
 
@@ -295,12 +292,10 @@ Output: Adds new user to the users table.
 function newUser(input){
 
   knex('users')
-    .insert({name: input.name,
-             email: input.email,
-             occupation: input.occupation})
+    .insert({name: input}) //Deleted email and occupation fields for input **NEW
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then();
 
 };
 

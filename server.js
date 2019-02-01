@@ -71,7 +71,6 @@ app.get("/popTest", (req, res) => {
   });
 });
 
-
 // route setup for testing purposes
 app.get("/resource", (req, res) => {
   res.render("resource");
@@ -85,14 +84,17 @@ app.post("/users", (req, res) => {
   });
 });
 
-app.post('/login', (req, res) => {
-  let testName = 'testUser';
+app.post('/login/', (req, res) => {
+  // let testName = 'testUser';
   req.session.name = req.body.loginHandle;
   console.log(req.session.name);
   res.redirect("/");
 });
 
 app.post("/register", (req, res) => {
+  req.session.name = req.body.registerHandle;
+  queries.newUser(req.session.name);
+  console.log('registered');
   res.redirect("/");
 });
 
