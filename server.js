@@ -17,7 +17,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
-const queries = require("./db/test-queries.js");
+const queries = require("./db/knex-queries.js");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -41,17 +41,16 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 
-
-
 /**************************************************
 As a user, when I log in, I want to see a homepage
 populated with a bunch of different resources.
 **************************************************/
 app.get("/", (req, res) => {
 
-  queries.findAllResources((resources) => {
-    res.json(resources);
-  });
+res.render('index');
+  // queries.findAllResources((resources) => {
+  //   res.json(resources);
+  // });
 
 });
 
@@ -193,8 +192,9 @@ app.get("/login", (req, res) => {
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {
-  queries.findResourceByResourceId(1, (resources) => {
-    res.json(resources);
+  queries.findResourceByResourceId(1, (testData) => {
+    console.log('Data Recieved');
+    res.redirect(testData[0].url);
   });
 });
 

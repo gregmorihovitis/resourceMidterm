@@ -16,8 +16,8 @@ function findAllResources(cb){
   knex('resources')
     .select('*')
     .then(rows => {
-      cb(rows);
       knex.destroy();
+      cb(rows);
     })
     .catch(err => console.log(err.message));
 }
@@ -38,8 +38,8 @@ function findResourceByTopicId(topicId, cb){
     .select('*')
     .where('topic_id', topicId)
     .then(rows => {
-      cb(rows);
       knex.destroy();
+      cb(rows);
     })
     .catch(err => console.log(err.message));
 }
@@ -60,16 +60,15 @@ function findResourceByResourceId(resourceId, cb){
   .select('*')
   .where('id', resourceId)
   .then(rows => {
-    cb(rows);
     knex.destroy();
+    cb(rows);
   })
   .catch(err => console.log(err.message));
 
 }
 
-
 //Test
-//(2, function(input){console.log("Testing finding resource by resource id:");console.log(input);});
+findResourceByResourceId(2, function(input){console.log("Testing finding resource by resource id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns
@@ -84,8 +83,8 @@ function findResourceByUserId(userId, cb){
   .select('*')
   .where('user_id', userId)
   .then(rows => {
-    cb(rows);
     knex.destroy();
+    cb(rows);
   })
   .catch(err => console.log(err.message));
 
@@ -109,8 +108,8 @@ function findResourceByUserLikes(userId, cb){
   .select('*')
   .where('likes.user_id', userId)
   .then(rows => {
-    cb(rows);
     knex.destroy();
+    cb(rows);
   })
   .catch(err => console.log(err.message));
 }
@@ -130,8 +129,8 @@ function findCommentByResourceId(resourceId, cb){
   .select('*')
   .where('resource_id', resourceId)
   .then(rows => {
-    cb(rows);
     knex.destroy();
+    cb(rows);
   })
   .catch(err => console.log(err.message));
 
@@ -176,8 +175,8 @@ function updateUserInfo(userId, userInfo){
 
 }
 //Test
-console.log("Updating user info");
-updateUserInfo(5, {name: 'Max2'});
+// console.log("Updating user info");
+// updateUserInfo(5, {name: 'Max2'});
 
 /*******************************
 Description: Adds a like to the  likes table.
