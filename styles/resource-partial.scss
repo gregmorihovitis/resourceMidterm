@@ -1,0 +1,27 @@
+/* resource component styling goes here */
+
+.card {
+  height: 300px;
+  width: 20rem;
+  margin-left: 15px;
+  margin-right: 20px;
+
+  .btn-container {
+    display: inline-block;
+    padding-left: 0;
+  }
+
+  .rTitle{
+    height: 50px;
+    font-weight: bold;
+  }
+
+  .rContent{
+    height: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+
+}
