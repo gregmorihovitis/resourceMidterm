@@ -109,6 +109,7 @@ function findResourceByUserLikes(userId, cb) {
 //findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
 /*******************************
+
 Description: Searches resource by search tems
 in the resource title
 Input: A searchTerm
@@ -130,6 +131,7 @@ function searchResources(searchTerm, cb) {
 //searchResources('octopuses', function(input){console.log("Testing search resource by searchTerm: ");console.log(input);});
 
 /*******************************
+
 Description: Searches User
 Input: A user ID and a callbackfunction.
 Output:
@@ -146,7 +148,6 @@ function findCommentByResourceId(resourceId, cb) {
       cb(rows);
     })
     .catch(err => console.log("error: ", err.message));
-
 }
 
 //Test
@@ -336,7 +337,6 @@ module.exports = {
   findResourceByResourceId,
   findResourceByUserId,
   findResourceByUserLikes,
-  searchResources,
   findUserById,
   findCommentByResourceId,
   updateUserInfo,
