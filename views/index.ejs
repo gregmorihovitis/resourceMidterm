@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/resource-partial.css" type="text/css" />
 
     <!-- External CSS files-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -33,12 +35,25 @@
 
     </section>
     <!-- content -->
-    <section id = 'resourceContainer' class="container">
+    <section id="resourceContainer" class="container">
       <!-- Shows topic resources (temporary) -->
-      <% for(let row = 0; row < 3; row++) {%>
+      <% for(let row = 0; row < 4; row++) {%>
       <section class="topicSection">
-          <h3>Topic <%= row + 1 %></h3>
-          <article id = 'resourceRow' class="row align-items-center"> 
+            <% if(row == 0) { %>
+                <h3 class="topic">Science And Engieering</h3>
+            <% } else if(row == 1) { %>
+                <h3 class="topic">Programming</h3>
+            <% } else if(row == 2) { %>
+                <h3 class="topic">Art And Desgin</h3>
+            <% } else if(row == 3) { %>
+                <h3 class="topic">Business</h3>
+            <% } %>
+          <article id="resourceRow" class="row align-items-center">
           </article>
       </section>
       <% } %>
+
+
+
+
+
