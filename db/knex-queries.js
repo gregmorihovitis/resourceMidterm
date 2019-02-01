@@ -1,11 +1,11 @@
-require('dotenv').config({path: '../.env'});
+require('dotenv').config({ path: '../.env' });
 
 const settings = require('../knexfile.js')['development'];
 //console.log(settings);
 
 const knex = require('knex')(settings);
 
-function findAllResources(cb){
+function findAllResources(cb) {
 
   knex('resources')
     .select('*')
@@ -25,7 +25,7 @@ resources with matching topic_id
 Input: A topic ID and a callbackfunction.
 Output:
 *******************************/
-function findResourceByTopicId(topicId, cb){
+function findResourceByTopicId(topicId, cb) {
 
   knex('resources')
     .select('*')
@@ -46,16 +46,16 @@ Input: A resource ID and a callbackfunction.
 Output:
 *******************************/
 
-function findResourceByResourceId(resourceId, cb){
+function findResourceByResourceId(resourceId, cb) {
 
   knex('resources')
-  .select('*')
-  .where('id', resourceId)
-  .then(rows => {
-    cb(rows);
+    .select('*')
+    .where('id', resourceId)
+    .then(rows => {
+      cb(rows);
 
-  })
-  .catch(err => console.log('find resouce 2', err.message));
+    })
+    .catch(err => console.log('find resouce 2', err.message));
 
 }
 
@@ -70,15 +70,15 @@ Input: A user ID and a callbackfunction.
 Output:
 *******************************/
 
-function findResourceByUserId(userId, cb){
+function findResourceByUserId(userId, cb) {
 
   knex('resources')
-  .select('*')
-  .where('user_id', userId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('user_id', userId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 
 }
 
@@ -93,16 +93,16 @@ Input: A user ID and a callbackfunction.
 Output:
 *******************************/
 
-function findResourceByUserLikes(userId, cb){
+function findResourceByUserLikes(userId, cb) {
 
   knex('resources')
-  .join('likes', 'resources.id', '=', 'likes.resource_id')
-  .select('*')
-  .where('likes.user_id', userId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .join('likes', 'resources.id', '=', 'likes.resource_id')
+    .select('*')
+    .where('likes.user_id', userId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 }
 
 //Test
@@ -114,7 +114,7 @@ in the resource title
 Input: A searchTerm
 Output:
 *******************************/
-function searchResources(searchTerm, cb){
+function searchResources(searchTerm, cb) {
 
   console.log(searchTerm);
   knex('resources')
@@ -135,15 +135,15 @@ Input: A user ID and a callbackfunction.
 Output:
 *******************************/
 
-function findCommentByResourceId(resourceId, cb){
+function findCommentByResourceId(resourceId, cb) {
 
   knex('comments')
-  .select('*')
-  .where('resource_id', resourceId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('resource_id', resourceId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log("error: ", err.message));
 
 }
 
@@ -157,15 +157,15 @@ Input: A user ID and a callbackfunction.
 Output:
 *******************************/
 
-function findUserById(userId, cb){
+function findUserById(userId, cb) {
 
   knex('users')
-  .select('*')
-  .where('id', userId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('id', userId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 
 }
 
@@ -175,13 +175,13 @@ Input: User data.
 Output:
 *******************************/
 
-function updateUserInfo(userId, userInfo){
+function updateUserInfo(userId, userInfo) {
 
   knex('users')
-  .where('id', userId)
-  .update({name: userInfo.name})
-  .then()
-  .catch(err => console.log(err.message));
+    .where('id', userId)
+    .update({ name: userInfo.name })
+    .then()
+    .catch(err => console.log(err.message));
 
 }
 //Test
@@ -194,15 +194,18 @@ Input: A user ID and resource ID.
 Output:
 *******************************/
 
-function likeResource(userId, resourceId){
+function likeResource(userId, resourceId) {
 
   knex('likes')
-    .insert({user_id: userId,
-             resource_id: resourceId})
+    .insert({
+      user_id: userId,
+      resource_id: resourceId
+    })
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing adding a like.");
-                      });
+    .then(function () {
+      console.log("Testing adding a like.");
+    });
 
 };
 
@@ -215,16 +218,19 @@ Input: A rating, user ID resource ID.
 Output:
 *******************************/
 
-function rateResource(userId, resourceId, rating){
+function rateResource(userId, resourceId, rating) {
 
   knex('ratings')
-    .insert({rating: rating,
-             user_id: userId,
-             resource_id: resourceId})
+    .insert({
+      rating: rating,
+      user_id: userId,
+      resource_id: resourceId
+    })
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing adding a rating.");
-                      });
+    .then(function () {
+      console.log("Testing adding a rating.");
+    });
 
 };
 
@@ -237,19 +243,21 @@ Input: An input object with all the new resource data.
 Output: Adds new resource to the recource table.
 *******************************/
 
-function newResource(input){
+function newResource(input) {
 
   knex('resources')
-    .insert({url: input.url,
-             title: input.title,
-             description: input.description,
-             user_id: input.user_id,
-             topic_id: input.topic_id,
-             date_posted: input.date_posted,
-             img_url: input.img_url})
+    .insert({
+      url: input.url,
+      title: input.title,
+      description: input.description,
+      user_id: input.user_id,
+      topic_id: input.topic_id,
+      date_posted: input.date_posted,
+      img_url: input.img_url
+    })
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {console.log()});
+    .then(function () { console.log() });
 
 };
 
@@ -269,14 +277,15 @@ Input: An input object with all the new resource data.
 Output: Adds new resource to the recource table.
 *******************************/
 
-function deleteResource(resourceId){
+function deleteResource(resourceId) {
 
   knex('resources')
     .where('id', resourceId)
     .del()
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing deleting a resource.");
-                      });
+    .then(function () {
+      console.log("Testing deleting a resource.");
+    });
 
 };
 
@@ -289,10 +298,10 @@ Input: An input object with all the new user data.
 Output: Adds new user to the users table.
 *******************************/
 
-function newUser(input){
+function newUser(input) {
 
   knex('users')
-    .insert({name: input}) //Deleted email and occupation fields for input **NEW
+    .insert({ name: input }) //Deleted email and occupation fields for input **NEW
     .returning('*')
     .catch(err => console.log(err.message))
     .then();
