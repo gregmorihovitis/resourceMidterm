@@ -27,6 +27,11 @@ body {
       border-width: 1px;
 
       .unique-comment {
+        background-color: aliceblue;
+        border-radius: 17px;
+        padding: 12px 14px;
+        margin-bottom: 8px;
+
         .avatar {
           display: inline-block;
         }
@@ -38,6 +43,7 @@ body {
 
         .comment {
           padding-top: 10px;
+          display: inherit;
         }
       }
     }
