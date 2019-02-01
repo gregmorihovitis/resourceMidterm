@@ -107,6 +107,26 @@ app.get("/users/:userId", (req, res) => {
   });
 });
 
+// Route for getting all of a users resources
+// and liked resources                            ** -Max NEW
+app.get("/resources/:userId", (req, res) => {
+
+  let pageResources = { userResources: {},
+                        likedResources: {} };
+
+
+  queries.findResourceByUserId(request.params.userId, (userResources) => {
+    pageResources.userResources = json(userResources);
+  });
+
+  queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
+    pageResources.likedResources = json(likedResources);
+  });
+
+  res.render('index', pageResources);
+
+});
+
 
 
 // route setup for testing purposes
@@ -133,7 +153,31 @@ app.post("/register", (req, res) => {
 app.put("/logout", (req, res) => {
   req.session = null;
   res.redirect('/login');
-})
+});
+
+// Route for user creating a new resource     ** -Max NEW
+app.put("/resources/new", (req, res) => {
+
+  let newResource = {url: req.body.url,
+             description: req.body.description,
+             user_id: req.body.userId,
+             topic_id: req.body.topicID,
+             date_posted: req.body.date,
+             img_url: req.body.imgUrl};
+
+  queries.addResource(newResource);
+
+  res.redirect('/resources/:userId');
+});
+
+// Route for user liking a resource         ** -Max NEW
+app.put('/recources/like', (req, res) => {
+
+  queries.likeResource(req.session.name, resourceId);
+
+});
+
+// Route for user rating a resource       ** -Max
 
 
 app.listen(PORT, () => {

@@ -53,7 +53,6 @@ function findResourceByResourceId(resourceId, cb){
   .where('id', resourceId)
   .then(rows => {
     cb(rows);
-
   })
   .catch(err => console.log('find resouce 2', err.message));
 
@@ -77,7 +76,6 @@ function findResourceByUserId(userId, cb){
   .where('user_id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 
@@ -102,7 +100,6 @@ function findResourceByUserLikes(userId, cb){
   .where('likes.user_id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 }
@@ -166,7 +163,24 @@ function findUserById(userId, cb){
   .where('id', userId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
+  })
+  .catch(err => console.log(err.message));
+
+}
+
+/*******************************
+Description: Finds a user by name
+Input: A user name and a callbackfunction.
+Output:
+*******************************/
+
+function findUserByName(userName, cb){
+
+  knex('users')
+  .select('*')
+  .where('id', userName)
+  .then(rows => {
+    cb(rows);
   })
   .catch(err => console.log(err.message));
 
@@ -185,7 +199,6 @@ function updateUserInfo(userId, userInfo){
   .update({name: userInfo.name})
   .then(knex.destroy())
   .catch(err => console.log(err.message));
-
 }
 //Test
 // console.log("Updating user info");
@@ -204,8 +217,7 @@ function likeResource(userId, resourceId){
              resource_id: resourceId})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing adding a like.");
-                      knex.destroy()});
+    .then(function() {console.log("Testing adding a like.");});
 
 };
 
@@ -226,8 +238,7 @@ function rateResource(userId, resourceId, rating){
              resource_id: resourceId})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing adding a rating.");
-                      knex.destroy()});
+    .then(function() {console.log("Testing adding a rating.");});
 
 };
 
@@ -252,7 +263,7 @@ function newResource(input){
              img_url: input.img_url})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then();
 
 };
 
@@ -278,8 +289,7 @@ function deleteResource(resourceId){
     .where('id', resourceId)
     .del()
     .catch(err => console.log(err.message))
-    .then(function() {console.log("Testing deleting a resource.");
-                      knex.destroy()});
+    .then(function() {console.log("Testing deleting a resource.");});
 
 };
 
@@ -300,7 +310,7 @@ function newUser(input){
              occupation: input.occupation})
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then();
 
 };
 
@@ -332,10 +342,10 @@ module.exports = {
   findResourceByUserLikes,
   searchResources,
   findUserById,
+  findUserByName,
   findCommentByResourceId,
   updateUserInfo,
   likeResource,
-  rateResource,
   rateResource,
   newResource,
   deleteResource,
