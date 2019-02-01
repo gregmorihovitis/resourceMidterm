@@ -43,35 +43,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// route setup for testing purposes
-app.get("/users", (req, res) => {
-  res.render("users");
-});
-
-// route setup for testing purposes
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-// route setup for testing purposes
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-// route setup for testing purposes
-app.get("/settings", (req, res) => {
-  res.render("settings");
-});
-
-// route setup for testing purposes
-app.get("/new", (req, res) => {
-  res.render("addNewResource");
-});
-
-// route setup for testing purposes
-app.post("/users", (req, res) => {
-  res.redirect("/users");
-});
 
 
 
