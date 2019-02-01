@@ -98,8 +98,22 @@ app.post("/register", (req, res) => {
   res.redirect("/");
 });
 
-
+//NEW comment routes - Julia
+app.post("/comments", (req, res) => {
+  if (!req.body.text) {
+    res.status(400).json({ error: 'invalid request: no data in POST body' });
+    return;
+  }
+  //make function that checks if a user is logged in
+  // const user = req.body.user ?
+  const comment = {
+    user: req.body.user,
+    text: req.body.text
+  }
+  res.json(comment)
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
