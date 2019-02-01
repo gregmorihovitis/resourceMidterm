@@ -11,9 +11,8 @@ function findAllResources(cb){
     .select('*')
     .then(rows => {
       cb(rows);
-      knex.destroy();
     })
-    .catch(err => console.log(err.message));
+    .catch(err => console.log('findAllResources', err.message));
 }
 
 //Test
@@ -33,9 +32,8 @@ function findResourceByTopicId(topicId, cb){
     .where('topic_id', topicId)
     .then(rows => {
       cb(rows);
-      knex.destroy();
     })
-    .catch(err => console.log(err.message));
+    .catch(err => console.log('findResourceByTopicId', err.message));
 }
 
 //Test
@@ -55,9 +53,9 @@ function findResourceByResourceId(resourceId, cb){
   .where('id', resourceId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
+
   })
-  .catch(err => console.log(err.message));
+  .catch(err => console.log('find resouce 2', err.message));
 
 }
 
@@ -170,8 +168,8 @@ function updateUserInfo(userId, userInfo){
 
 }
 //Test
-console.log("Updating user info");
-updateUserInfo(5, {name: 'Max2'});
+// console.log("Updating user info");
+// updateUserInfo(5, {name: 'Max2'});
 
 /*******************************
 Description: Adds a like to the  likes table.
