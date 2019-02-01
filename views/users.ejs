@@ -9,10 +9,13 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
   <link rel="stylesheet" href="/styles/resource-partial.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/users.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/login-form-and-regi-form.css" type="text/css" />
 
   <!-- External CSS files-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Internal CSS files-->
 
@@ -26,46 +29,74 @@
 
   <!-- Internal JS files-->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
   <!-- navbar -->
   <% include partials/_navbar.ejs %>
-  <h2>My Resources</h2>
+
   <!-- content -->
-  <section class="container">
-    <!-- Shows topic resources (temporary) -->
-    <% for(let row = 0; row < 3; row++) {%>
-    <section class="topicSection">
-      <h3>Topic
-        <%= row + 1 %>
-      </h3>
-      <article class="row align-items-center">
-        <% for(let col = 0; col < 3; col++) {%>
-        <% include partials/_my-resources.ejs %>
-        <% } %>
-      </article>
+  <section class="row">
+    <section class="column left">
+      <!-- Shows user profile-->
+      <section class="container">
+          <div class="profile">
+            <img src="https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png"">
+            <h3 class="userHandle">User Handle</h3>
+            <p class="occupation">Occupation</p>
+            <p class="email">Email address</p>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <div class="profile-footer">
+              <span>Want to change your profile?</span>
+              <!-- redirect to settings page -->
+              <!-- temporary routing-->
+              <small>
+                <a href="/settings" class="to-settings">Go to settings</a>
+              </small>
+            </div>
+          </div>
+      </section>
     </section>
-    <% } %>
-  </section>
-  <h2>Liked Resources</h2>
-  <!-- content -->
-  <section class="container">
-    <!-- Shows topic resources (temporary) -->
-    <% for(let row = 0; row < 3; row++) {%>
-    <section class="topicSection">
-      <h3>Topic
-        <%= row + 1 %>
-      </h3>
-      <article class="row align-items-center">
-        <% for(let col = 0; col < 3; col++) {%>
-        <% include partials/_my-resources.ejs %>
-        <% } %>
-      </article>
+
+      <section class="column right">
+        <section class="container">
+          <h2>My Resources</h2>
+          <!-- Shows topic resources (temporary) -->
+          <% for(let row = 0; row < 2; row++) {%>
+          <section class="topicSection">
+            <h3 class="topic">Topic
+              <%= row + 1 %>
+            </h3>
+            <article class="row align-items-center">
+              <% for(let col = 0; col < 2; col++) {%>
+              <% include partials/_my-resources.ejs %>
+              <% } %>
+            </article>
+          </section>
+          <% } %>
+
+          <h2>Liked Resources</h2>
+          <!-- Shows topic resources (temporary) -->
+          <% for(let row = 0; row < 2; row++) {%>
+          <section class="topicSection">
+            <h3 class="topic">Topic
+              <%= row + 1 %>
+            </h3>
+            <article class="row align-items-center">
+              <% for(let col = 0; col < 2; col++) {%>
+              <% include partials/_my-resources.ejs %>
+              <% } %>
+            </article>
+          </section>
+          <% } %>
+        </section>
+      </section>
     </section>
-    <% } %>
   </section>
+
 </body>
 
 </html>
