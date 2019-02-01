@@ -10,6 +10,7 @@
 // });
 
 
+
 function createResourceElement(resource){
   let $resource = `
     <div class="card">
@@ -49,3 +50,4 @@ const populateTest = () => {
 $(document).ready(function(){
   populateTest();
 })
+
