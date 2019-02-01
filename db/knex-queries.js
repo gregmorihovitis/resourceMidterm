@@ -111,6 +111,27 @@ function findResourceByUserLikes(userId, cb){
 //findResourceByUserLikes(1, function(input){console.log("Testing finding resources by user likes:");console.log(input);});
 
 /*******************************
+Description: Searches resource by search tems
+in the resource title
+Input: A searchTerm
+Output:
+*******************************/
+function searchResources(searchTerm, cb){
+
+  console.log(searchTerm);
+  knex('resources')
+    .select('*')
+    .whereRaw('title ILIKE ?', ['%' + searchTerm + '%'])
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log('searchResources', err.message));
+}
+
+//Test
+//searchResources('octopuses', function(input){console.log("Testing search resource by searchTerm: ");console.log(input);});
+
+/*******************************
 Description: Searches User
 Input: A user ID and a callbackfunction.
 Output:
@@ -123,7 +144,6 @@ function findCommentByResourceId(resourceId, cb){
   .where('resource_id', resourceId)
   .then(rows => {
     cb(rows);
-    knex.destroy();
   })
   .catch(err => console.log(err.message));
 
@@ -310,6 +330,7 @@ module.exports = {
   findResourceByResourceId,
   findResourceByUserId,
   findResourceByUserLikes,
+  searchResources,
   findUserById,
   findCommentByResourceId,
   updateUserInfo,
