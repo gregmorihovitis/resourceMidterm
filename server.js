@@ -148,7 +148,7 @@ As a user, I want to rate a resource.
 
 app.put("/resource/rating", (req, res) => {
 
-  queries.rateResource('rating', 'userId', 'resourceId')
+  queries.rateResource('rating', 'userId', 'resourceId');
 
 });
 
@@ -162,7 +162,7 @@ app.delete("/resource", (req, res) => {
 });
 
 /**************************************************
-As a user, I want to be able to dit one of my
+As a user, I want to be able to edit one of my
 resources.
 **************************************************/
 

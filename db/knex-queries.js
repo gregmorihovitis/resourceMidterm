@@ -138,7 +138,7 @@ function findCommentByResourceId(resourceId, cb){
 }
 
 //Test
-findCommentByResourceId(1, function(input){console.log("Testing finding comment by resourceId:");console.log(input);});
+//findCommentByResourceId(1, function(input){console.log("Testing finding comment by resourceId:");console.log(input);});
 
 
 /*******************************
@@ -170,16 +170,14 @@ function updateUserInfo(userId, userInfo){
 
   knex('users')
   .where('id', userId)
-  .update({name: userInfo.name,
-           email: userInfo.email,
-           occupation: userInfo.occupation})
+  .update({name: userInfo.name})
   .then(knex.destroy())
   .catch(err => console.log(err.message));
 
 }
 //Test
-// console.log("Updating user info");
-// updateUserInfo(5, {name: 'Max2', email: 'max2@sample.com', occupation: 'Stunt Driver' });
+console.log("Updating user info");
+updateUserInfo(5, {name: 'Max2'});
 
 /*******************************
 Description: Adds a like to the  likes table.
@@ -220,6 +218,9 @@ function rateResource(userId, resourceId, rating){
                       knex.destroy()});
 
 };
+
+//Test
+//rateResource(1, 2, 5);
 
 /*******************************
 Description: Adds a new resource to the resource table.
@@ -265,9 +266,13 @@ function deleteResource(resourceId){
     .where('id', resourceId)
     .del()
     .catch(err => console.log(err.message))
-    .then(function() {knex.destroy()});
+    .then(function() {console.log("Testing deleting a resource.");
+                      knex.destroy()});
 
 };
+
+//Test
+//deleteResource(4);
 
 /*******************************
 Description: Adds a new user to the user table.
@@ -317,6 +322,7 @@ module.exports = {
   findCommentByResourceId,
   updateUserInfo,
   likeResource,
+  rateResource,
   rateResource,
   newResource,
   deleteResource,
