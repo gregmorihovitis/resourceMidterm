@@ -5,12 +5,6 @@ const settings = require('../knexfile.js')['development'];
 
 const knex = require('knex')(settings);
 
-
-/*******************************
-Description: Returns all resources from table.
-Input: A callback function.
-Output:
-*******************************/
 function findAllResources(cb){
 
   knex('resources')
@@ -45,7 +39,7 @@ function findResourceByTopicId(topicId, cb){
 }
 
 //Test
-//findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
+// findResourceByTopicId(1, function(input){console.log("Testing finding resource by topic id:");console.log(input);});
 
 /*******************************
 Description: Searches resource table and returns

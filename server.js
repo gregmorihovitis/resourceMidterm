@@ -43,10 +43,7 @@ app.use("/api/users", usersRoutes(knex));
 
 
 
-/**************************************************
-As a user, when I log in, I want to see a homepage
-populated with a bunch of different resources.
-**************************************************/
+// Home page
 app.get("/", (req, res) => {
 
   queries.findAllResources((resources) => {
@@ -191,12 +188,26 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-// route setup for testing purposes
-app.post("/users", (req, res) => {
-  queries.findResourceByResourceId(1, (resources) => {
-    res.json(resources);
+app.get('/test', (req, res) => {
+  res.render('popTest');
+});
+
+app.get("/popTest", (req, res) => {
+  queries.findAllResources((popTest) => {
+    res.json(popTest);
   });
 });
+
+
+// route setup for testing purposes
+app.post("/users", (req, res) => {
+  queries.findResourceByResourceId(1, (testData) => {
+    console.log('Data Recieved');
+    res.redirect(testData[0].url);
+  });  
+});
+
+
 
 
 app.listen(PORT, () => {
