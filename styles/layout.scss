@@ -2,14 +2,6 @@ body {
   /*background-image: url("/img/bg.jpg");
   background-size: 1500px 1000px;*/
 
-  .mainTagLine {
-    font-size: 64px;
-  }
-
-  .subTagLine {
-    font-size: 21px;
-  }
-
   .card {
     width: 20rem;
     margin-left: 15px;
@@ -24,6 +16,20 @@ body {
   .container {
     padding: 50px 30px 30px 30px;
     width: 100%;
+
+    .tagline-container {
+      /*background-color: #343a40;
+      opacity: 0.4;
+      color: #ffffff;*/
+
+      .mainTagLine {
+        font-size: 64px;
+      }
+
+      .subTagLine {
+        font-size: 21px;
+      }
+    }
   }
 }
 
@@ -72,7 +78,7 @@ nav {
     justify-content: center;
     float: left;
 
-    .login-form, .user-setting-form {
+    .login-form, .user-setting-form, .add-resource-form {
       width: 100%;
       overflow: hidden;
       border-radius: 20px;
