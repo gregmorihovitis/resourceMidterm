@@ -19,21 +19,21 @@
       <ul class="navbar-nav">
         <!-- if theer's no user cookie, show buttons as Login, Register -->
         <!-- else the buttons will show Logout, Settings -->
-        <% if(!req.session.id) { %>
+
           <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/register">Register</a>
           </li>
-        <% } else { %>
-          <li class="nav-item">
+
+          <!-- <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="/settings">Settings</a>
-          </li>
-        <% } %>
+          </li> -->
+
       </ul>
     </div>
 </nav>
