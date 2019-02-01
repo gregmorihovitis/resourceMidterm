@@ -132,6 +132,7 @@ app.get("/resources/:userId", (req, res) => {
 // route setup for testing purposes
 app.post("/users", (req, res) => {
   queries.findResourceByResourceId(1, (testData) => {
+    req.sessions.name = testData[0].title;
     console.log('Data Recieved');
     res.redirect(testData[0].url);
   });
