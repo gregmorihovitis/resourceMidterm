@@ -26,46 +26,56 @@
 
   <!-- Internal JS files-->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
   <!-- navbar -->
   <% include partials/_navbar.ejs %>
-  <h2>My Resources</h2>
+
   <!-- content -->
-  <section class="container">
-    <!-- Shows topic resources (temporary) -->
-    <% for(let row = 0; row < 3; row++) {%>
-    <section class="topicSection">
-      <h3>Topic
-        <%= row + 1 %>
-      </h3>
-      <article class="row align-items-center">
-        <% for(let col = 0; col < 3; col++) {%>
-        <% include partials/_my-resources.ejs %>
-        <% } %>
-      </article>
-    </section>
-    <% } %>
+  <section class="row">
+  <section class="column">
+  <!-- Shows user profile-->
+
+
   </section>
-  <h2>Liked Resources</h2>
-  <!-- content -->
-  <section class="container">
-    <!-- Shows topic resources (temporary) -->
-    <% for(let row = 0; row < 3; row++) {%>
-    <section class="topicSection">
-      <h3>Topic
-        <%= row + 1 %>
-      </h3>
-      <article class="row align-items-center">
-        <% for(let col = 0; col < 3; col++) {%>
-        <% include partials/_my-resources.ejs %>
-        <% } %>
-      </article>
+  <section class="column">
+    <section class="container">
+      <h2>My Resources</h2>
+      <!-- Shows topic resources (temporary) -->
+      <% for(let row = 0; row < 2; row++) {%>
+      <section class="topicSection">
+        <h3>Topic
+          <%= row + 1 %>
+        </h3>
+        <article class="row align-items-center">
+          <% for(let col = 0; col < 2; col++) {%>
+          <% include partials/_my-resources.ejs %>
+          <% } %>
+        </article>
+      </section>
+      <% } %>
     </section>
-    <% } %>
+
+    <!-- content -->
+    <section class="container">
+      <h2>Liked Resources</h2>
+      <!-- Shows topic resources (temporary) -->
+      <% for(let row = 0; row < 2; row++) {%>
+      <section class="topicSection">
+        <h3>Topic
+          <%= row + 1 %>
+        </h3>
+        <article class="row align-items-center">
+          <% for(let col = 0; col < 2; col++) {%>
+          <% include partials/_my-resources.ejs %>
+          <% } %>
+        </article>
+      </section>
+      <% } %>
+    </section>
   </section>
+
 </body>
 
 </html>

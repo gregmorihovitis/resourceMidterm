@@ -49,8 +49,8 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/new", (req, res) => {
-  res.render("addNewResource");
+app.get("/users", (req, res) => {
+  res.render("users");
 });
 
 // route setup for testing purposes

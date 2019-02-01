@@ -1,3 +1,5 @@
+<!-- include a if statement below to determine which page to display -->
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <!-- Logo and web app name -->
     <a class="navbar-brand" href="/">
@@ -7,7 +9,7 @@
 
     <div class="collapse navbar-collapse">
       <!-- Search bar -->
-      <!-- will chnage route to /search instead of /users-->
+      <!-- will chnage route to /search instead of /users -->
       <form class="form-inline" action="/users" method="POST">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -15,12 +17,20 @@
 
       <!-- Login / Register-->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
+        <!-- if theer's no user cookie, show buttons as Login, Register -->
+        <!-- else the buttons will show Logout, Settings -->
+          <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+          </li>
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/settings">Settings</a>
+          </li> -->
       </ul>
     </div>
 </nav>
