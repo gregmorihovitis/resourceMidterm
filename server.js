@@ -41,7 +41,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 app.use(cookieSession({
-  name: 'name',
+  name: 'id',
   keys: ['key1']
 }));
 
@@ -52,8 +52,8 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/new", (req, res) => {
-  res.render("addNewResource");
+app.get("/users", (req, res) => {
+  res.render("users");
 });
 
 // route setup for testing purposes
@@ -62,7 +62,11 @@ app.get("/login", (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-  res.render('register');
+  res.render('login');
+});
+
+app.get('/test', (req, res) => {
+  res.render('popTest');
 });
 
 app.get("/popTest", (req, res) => {
@@ -78,22 +82,22 @@ app.get("/resource", (req, res) => {
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {
-  queries.findResourceByResourceId(1, (testData) => {
+  queries.findResourceByResourceId(req.session.id, (testData) => {
     console.log('Data Recieved');
     res.redirect(testData[0].url);
   });
 });
 
-app.post('/login/', (req, res) => {
-  // let testName = 'testUser';
-  req.session.name = req.body.loginHandle;
-  console.log(req.session.name);
+app.post('/login', (req, res) => {
+  // let testid = 'testUser';
+  req.session.id = req.body.loginHandle;
+  console.log(req.session.id);
   res.redirect("/");
 });
 
 app.post("/register", (req, res) => {
-  req.session.name = req.body.registerHandle;
-  queries.newUser(req.session.name);
+  req.session.id = req.body.registerHandle;
+  queries.newUser(req.session.id);
   console.log('registered');
   res.redirect("/");
 });
