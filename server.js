@@ -16,7 +16,7 @@ const knexLogger = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
-
+const cookieSession = require('cookie-session');
 const queries = require("./db/knex-queries.js");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -40,7 +40,10 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-
+app.use(cookieSession({
+  name: 'name',
+  keys: ['key1']
+}));
 
 
 // Home page
@@ -82,7 +85,10 @@ app.post("/users", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
+  let testName = 'testUser';
+  req.session.name = req.body.loginHandle;
+  console.log(req.session.name);
   res.redirect("/");
 });
 
