@@ -21,7 +21,7 @@ function createResourceElement(resource){
         <p class="rContent">${resource.url}</p>
       </div>
     </div>
-  `    
+  `
 
   return $resource;
 }
