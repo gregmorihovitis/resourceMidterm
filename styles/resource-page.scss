@@ -25,6 +25,21 @@ body {
       width: 50%;
       border-style: solid;
       border-width: 1px;
+
+      .unique-comment {
+        .avatar {
+          display: inline-block;
+        }
+
+        .user-handle {
+          display: inline;
+          padding-left: 10px;
+        }
+
+        .comment {
+          padding-top: 10px;
+        }
+      }
     }
 
     img {

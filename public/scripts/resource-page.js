@@ -1,3 +1,10 @@
+//Prevents cross-site scripting
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 //fetches new comments from comments page
 function loadComments() {
   $('.posted-comments').empty();
@@ -24,18 +31,11 @@ function renderComments(comments) {
 //Creates individual comment container (usernamename, avatar, comment, rating) after comment is submitted
 function createCommentElement(comment) {
   var $commentPassed = `
-  <article class="posted-comment">
-      <header>
-          <img src=${comment.user.avatars}>
-          <h2>${comment.user.name}</h2>
-      </header >
-          <div class="comment-space">
-              <p>${escape(comment.content.text)}</p>
-          </div>
-          <footer>
-              ${moment(comment.created_at).fromNow()}
-          </footer >
-  </article >`
+  <section class="unique-comment">
+        <img src=${comment.user.avatars}>
+        <p class=${comment.user.name}</p>
+        <p class=${escape(comment.content.text)}</p>
+      </section>`
   return $commentPassed;
 }
 
@@ -43,32 +43,19 @@ $(document).ready(function () {
 
   loadComments();
 
-
   // Ajax post request to submit comments
-  $('.new-tweet form').on('submit', function (event) {
-    var counter = +$(this).children('.counter')['0'].textContent
+  $('.new-comment form').on('submit', function (event) {
     event.preventDefault()
-    if (counter === 140) {
-      $('.container .new-tweet .error-msg').text("You didn't type anything!");
-    }
-    else if (counter < 0) {
-
-      $('.container .new-tweet .error-msg').text("Your tweet is over the 140 characters!");
-    }
-    else {
-      $('.container .new-tweet .error-msg').text("");
-      //once a form is submitted loadedTweets only prepends the most recent post
-      firstLoad = false;
-      $.ajax({
-        method: "POST",
-        url: "/tweets",
-        data: $(this).serialize()
+    //once a form is submitted loadedComments only prepends the most recent post
+    firstLoad = false;
+    $.ajax({
+      method: "POST",
+      url: "/comments",
+      data: $(this).serialize()
+    })
+      .done(function () {
+        loadComments()
+        $('.new-comment form textarea').val('');
       })
-        .done(function () {
-          loadTweets()
-          $('.new-tweet form textarea').val('');
-        })
-    }
   });
-
 });
