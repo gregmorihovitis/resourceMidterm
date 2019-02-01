@@ -52,8 +52,8 @@ app.get("/", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/new", (req, res) => {
-  res.render("addNewResource");
+app.get("/users", (req, res) => {
+  res.render("users");
 });
 
 // route setup for testing purposes
@@ -61,8 +61,8 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get('/register', (req, res) => {
-  res.render('register');
+app.get('/test', (req, res) => {
+  res.render('popTest');
 });
 
 app.get("/popTest", (req, res) => {
