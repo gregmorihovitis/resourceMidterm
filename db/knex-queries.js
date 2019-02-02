@@ -141,6 +141,8 @@ function findCommentByResourceId(resourceId, cb) {
     .where('resource_id', resourceId)
     //edited join -JR
     .join("users", "comments.id", "users.id")
+    //was testing below to try and join resource table
+    // .join("resources", "comments.id", "resource.id")
     .then(rows => {
       cb(rows);
     })

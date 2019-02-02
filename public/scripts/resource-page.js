@@ -1,3 +1,8 @@
+//THIS CODE WAS BASICALLY COPY-PASTED FROM TWEETER APP.JS
+//only replaced tweet with comment - not currently in use
+
+
+
 //Prevents cross-site scripting
 function escape(str) {
   var div = document.createElement('div');

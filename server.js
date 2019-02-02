@@ -84,30 +84,27 @@ app.get("/popTest", (req, res) => {
 app.get("/resource", (req, res) => {
   queries.findCommentByResourceId(1, (comments) => {
     const templateVars = {
+      //   comments: comments
       comments: JSON.stringify(comments)
       //just leave comments and remove json.stringify and parenthesis after**********
     }
+    // queries.findResourceByUserId(1(resource))
     res.render("resource", templateVars);
   });
 });
 
-// Route for when user searches recources ** -Max - NEW
-app.get("/search", (req, res) => {
-  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+app.get('/search', (req, res) => {
 
-    let pageResources = json(searchResults);
-
-    res.render('resource', pageResources);
-  });
 });
 
 // Route for when user clicks on a resource ** -Max - NEW
 app.get("/resources/:resourceId", (req, res) => {
-  queries.findResourceByResourceId(req.body.resourceId, (resource) => {
+  console.log('get recieved', req.params.resourceId);
+  queries.findResourceByResourceId(req.params.resourceId, (resource) => {
 
-     let pageResources = json(resource);
-
-     res.render('search', pageResources);
+     let pageResources = resource;
+     console.log(pageResources);
+     res.render('search');
   })
 })
 
@@ -142,6 +139,15 @@ app.get("/resources/:userId", (req, res) => {
 });
 
 
+// Route for when user searches recources ** -Max - NEW
+app.post("/search", (req, res) => {
+  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+
+    let pageResources = json(searchResults);
+
+    res.redirect('search', pageResources);
+  });
+});
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {
@@ -189,7 +195,7 @@ app.post("/resources/new", (req, res) => {
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/recources/like', (req, res) => {
+app.put('/reources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 
@@ -209,8 +215,15 @@ app.post("/comments", (req, res) => {
     user: req.body.user,
     text: req.body.text
   }
+  //needs to be fixed - only redirects to comments JSON element right now
   res.json(comment)
 });
+
+app.post("/resources/:resourceId", (req, res) => {
+    console.log('post recieved', req.params.resourceId);
+    let urlName = `/resources/${req.params.resourceId}`
+     res.json({url: urlName});
+})
 
 
 

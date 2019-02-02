@@ -50,11 +50,21 @@ body {
       margin-bottom: 10%;
       border-radius: 10px;
     }
+    .like-rate {
+      float: right;
+      margin-left: 15px;
+      transition: opacity 700ms linear;
+      opacity: 0.5;
+    }
+
+    .like-rate:hover {
+      opacity: 1;
+    }
 
     .comments-container {
       width: 100%;
-      border-style: solid;
-      border-width: 1px;
+      // border-style: solid;
+      // border-width: 1px;
 
       .unique-comment {
         background-color: aliceblue;
@@ -91,6 +101,21 @@ body {
         width: 100%;
         padding: 5px;
         margin-bottom: 5px;
+        margin-top: 5px;
+        border-radius: 10px;
+      }
+
+      input {
+        background-color: whitesmoke;
+        border-color: white;
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-family: Inconsolata;
+        margin-top: 5px;
+      }
+
+      input:hover {
+        background-color: #c3c2c2;
       }
     }
   }
