@@ -91,14 +91,8 @@ app.get("/resource", (req, res) => {
   });
 });
 
-// Route for when user searches recources ** -Max - NEW
-app.get("/search", (req, res) => {
-  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+app.get('/search', (req, res) => {
 
-    let pageResources = json(searchResults);
-
-    res.render('resource', pageResources);
-  });
 });
 
 // Route for when user clicks on a resource ** -Max - NEW
@@ -142,6 +136,15 @@ app.get("/resources/:userId", (req, res) => {
 });
 
 
+// Route for when user searches recources ** -Max - NEW
+app.post("/search", (req, res) => {
+  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+
+    let pageResources = json(searchResults);
+
+    res.redirect('search', pageResources);
+  });
+});
 
 // route setup for testing purposes
 app.post("/users", (req, res) => {

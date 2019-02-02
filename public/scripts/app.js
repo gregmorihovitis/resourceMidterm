@@ -13,7 +13,7 @@
 
 function createResourceElement(resource) {
   let $resource = `
-    <div class="card">
+    <div id = ${resource.id} class="card">
       <img src=${resource.img_url} class="rThumbnail" alt="https://cdn11.bigcommerce.com/s-ccerkj57m6/images/stencil/1280x1280/products/276/666/oops__68425.1528235707.jpg?c=2&imbypass=on">
       <div class="rBody">
         <h5 class="rTitle">${resource.title}</h5>
@@ -49,5 +49,8 @@ const populateTest = () => {
 
 $(document).ready(function () {
   populateTest();
+  $('h1.mainTagLine').on('click', function(){
+    console.log('click confirm');
+  }); 
 })
 
