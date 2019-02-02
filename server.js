@@ -89,6 +89,7 @@ app.get('/test', (req, res) => {
   res.render('popTest');
 });
 
+
 app.get("/popTest", (req, res) => {
   queries.findAllResources((popTest) => {
     res.json(popTest);
@@ -205,8 +206,8 @@ app.post("/register", (req, res) => {
 
 
 // Route for loggin out a user. ** - Max NEW
-app.post("/logout", (req, res) => {
-  req.session = null;
+app.get("/logout", (req, res) => {
+  req.session.id = null;
   res.redirect('/login');
 });
 
