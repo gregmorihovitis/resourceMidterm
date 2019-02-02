@@ -4,16 +4,15 @@
   <head>
     <title>Welcome to Resource Wall</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/login-form-and-regi-form.css" type="text/css" />
-
     <!-- External CSS files-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <!-- Internal CSS files-->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/resource-submit.css" type="text/css" />
 
     <!-- External JS files-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -23,6 +22,9 @@
     <!-- Internal JS files-->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
     <!-- navbar -->
@@ -31,7 +33,7 @@
     <section class="container">
       <!-- add new resource form here -->
       <section class="form-container">
-        <form class="add-resource-form">
+        <form class="add-resource-form" method="POST">
             <span class="form-title">Submit A New Resource</span>
             <div class="input-container">
               <input type="text" class="form-control" placeholder="URL">
@@ -43,13 +45,23 @@
               <input type="textarea" class="form-control" placeholder="Description">
             </div>
             <div class="input-container">
-              <input type="text" class="form-control" placeholder="Topic">
+              Topic:
+              <div class="checkbox-row">
+                <div class="checkbox-column">
+                  Neuroscience <input type="checkbox" id="neuroCheck">
+                  Graphic Design <input type="checkbox" id="graphicCheck">
+                </div>
+                <div class="checkbox-column">
+                  Octopus <input type="checkbox" id="octopusCheck">
+                  Creative Code <input type="checkbox" id="creativeCheck">
+                </div>
+              </div>
             </div>
             <div class="btn-container">
               <button type="submit" class="btn-submit">SUBMIT</button>
             </div>
             <div class="form-footer">
-              <small class="thank-you-text">Thank you for your contribution!</small>
+              <p class="thank-you-text">Thank you for your contribution to Resource Wall!</p>
             </div>
         </form>
       </section>

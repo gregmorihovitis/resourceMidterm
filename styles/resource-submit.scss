@@ -1,13 +1,14 @@
-/* login form and registration form styling */
+/* resource-submit form styling goes here */
+
 .form-container {
     position: relative;
     width: 450px;
-    height: 500px;
+    height: 550px;
     display: flex;
     justify-content: center;
     float: left;
 
-    .login-form, .user-setting-form {
+    .add-resource-form {
       width: 100%;
       overflow: hidden;
       border-radius: 20px;
@@ -58,18 +59,9 @@
     }
 
     .form-footer {
-      padding-top: 50px;
+      padding-top: 30px;
       text-align: center;
       font-size: 15px;
-
-      .to-register {
-        color: #28a745;
-        text-decoration: none;
-      }
+      color: #28a745;
     }
-}
-
-/* for positioning registration form */
-.form-container:nth-child(2) {
-    float: right;
 }
