@@ -249,6 +249,7 @@ app.post("/resources/new", (req, res) => {
 
   let newResource = {
     url: req.body.url,
+    title: req.body.title,
     description: req.body.description,
     user_id: req.body.userId,
     topic_id: req.body.topicID,
