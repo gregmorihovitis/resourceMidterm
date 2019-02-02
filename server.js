@@ -99,11 +99,12 @@ app.get('/search', (req, res) => {
 
 // Route for when user clicks on a resource ** -Max - NEW
 app.get("/resources/:resourceId", (req, res) => {
-  queries.findResourceByResourceId(req.body.resourceId, (resource) => {
+  console.log('get recieved', req.params.resourceId);
+  queries.findResourceByResourceId(req.params.resourceId, (resource) => {
 
-     let pageResources = json(resource);
-
-     res.render('search', pageResources);
+     let pageResources = resource;
+     console.log(pageResources);
+     res.render('search');
   })
 })
 
@@ -194,7 +195,7 @@ app.post("/resources/new", (req, res) => {
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/recources/like', (req, res) => {
+app.put('/reources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 
@@ -217,6 +218,12 @@ app.post("/comments", (req, res) => {
   //needs to be fixed - only redirects to comments JSON element right now
   res.json(comment)
 });
+
+app.post("/resources/:resourceId", (req, res) => {
+    console.log('post recieved', req.params.resourceId);
+    let urlName = `/resources/${req.params.resourceId}`
+     res.json({url: urlName});
+})
 
 
 
