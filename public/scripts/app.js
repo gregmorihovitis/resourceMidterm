@@ -18,7 +18,6 @@ function createResourceElement(resource) {
       <div class="rBody">
         <h5 class="rTitle">${resource.title}</h5>
         <p class="rContent">${resource.description}</p>
-        <p class="rContent">${resource.url}</p>
       </div>
     </div>
   `
@@ -28,7 +27,7 @@ function createResourceElement(resource) {
 
 function renderResources(resources) {
   resources.forEach(currResource => {
-    $('#resourceRow').prepend(createResourceElement(currResource));
+    $('#neuroRow').prepend(createResourceElement(currResource));
   });
 }
 
