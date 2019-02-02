@@ -117,6 +117,14 @@ app.get('/search', (req, res) => {
   res.render(templateVars);
 });
 
+//added new route for new resources - JR ****
+app.get("/resources/new", (req, res) => {
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render('addNewResource', templateVars);
+});
+
 // Route for when user clicks on a resource ** -Max - NEW
 app.get("/resources/:resourceId", (req, res) => {
   console.log('get recieved', req.params.resourceId);
@@ -211,6 +219,7 @@ app.get("/logout", (req, res) => {
   res.redirect('/login');
 });
 
+
 // Route for user creating a new resource     ** -Max NEW
 app.post("/resources/new", (req, res) => {
 
@@ -225,11 +234,11 @@ app.post("/resources/new", (req, res) => {
 
   queries.addResource(newResource);
 
-  res.redirect('/resources/:userId');
+  res.redirect('/resources/:userId', newResource);
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/reources/like', (req, res) => {
+app.put('/resources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 

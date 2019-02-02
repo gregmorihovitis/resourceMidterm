@@ -49,12 +49,12 @@ Output:
 function findResourceByResourceId(resourceId, cb) {
 
   knex('resources')
-  .select('*')
-  .where('id', resourceId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log('find resouce 2', err.message));
+    .select('*')
+    .where('id', resourceId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log('find resource 2', err.message));
 }
 
 
@@ -71,12 +71,12 @@ Output:
 function findResourceByUserId(userId, cb) {
 
   knex('resources')
-  .select('*')
-  .where('user_id', userId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('user_id', userId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 }
 
 //Test
@@ -162,12 +162,12 @@ Output:
 function findUserById(userId, cb) {
 
   knex('users')
-  .select('*')
-  .where('id', userId)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('id', userId)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 }
 
 /*******************************
@@ -176,15 +176,15 @@ Input: A user name and a callbackfunction.
 Output:
 *******************************/
 
-function findUserByName(userName, cb){
+function findUserByName(userName, cb) {
 
   knex('users')
-  .select('*')
-  .where('id', userName)
-  .then(rows => {
-    cb(rows);
-  })
-  .catch(err => console.log(err.message));
+    .select('*')
+    .where('id', userName)
+    .then(rows => {
+      cb(rows);
+    })
+    .catch(err => console.log(err.message));
 }
 
 /*******************************
