@@ -84,9 +84,11 @@ app.get("/popTest", (req, res) => {
 app.get("/resource", (req, res) => {
   queries.findCommentByResourceId(1, (comments) => {
     const templateVars = {
+      //   comments: comments
       comments: JSON.stringify(comments)
       //just leave comments and remove json.stringify and parenthesis after**********
     }
+    // queries.findResourceByUserId(1(resource))
     res.render("resource", templateVars);
   });
 });
@@ -209,6 +211,7 @@ app.post("/comments", (req, res) => {
     user: req.body.user,
     text: req.body.text
   }
+  //needs to be fixed - only redirects to comments JSON element right now
   res.json(comment)
 });
 
