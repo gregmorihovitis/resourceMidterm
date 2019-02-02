@@ -14,7 +14,7 @@
 function createResourceElement(resource) {
   let $resource = `
   <div id = ${resource.id} class="card" onClick = 'divClick(this.id)' >
-  <img src=${resource.img_url} class="rThumbnail" alt="https://cdn11.bigcommerce.com/s-ccerkj57m6/images/stencil/1280x1280/products/276/666/oops__68425.1528235707.jpg?c=2&imbypass=on">
+  <img src=${resource.img_url} class="rThumbnail">
       <div class="rBody">
         <h5 class="rTitle">${resource.title}</h5>
         <p class="rContent">${resource.description}</p>
@@ -85,7 +85,7 @@ const populate = () => {
   })
     .done((resources) => {
       renderCreative(resources);
-    });;    
+    });;
   console.log('populated');
 };
 
