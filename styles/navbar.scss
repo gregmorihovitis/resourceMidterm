@@ -4,10 +4,6 @@
 nav {
   background-color: #343a40;
 
-  .navbar-nav li {
-    display: inline-block;
-  }
-
   .form-inline {
     width: 100%;
 
@@ -20,5 +16,13 @@ nav {
       margin-right: 10px;
       margin-left: 10px;
     }
+  }
+
+  .add-resource {
+    margin-right: 30px;
+  }
+
+  .navbar-nav li {
+    display: inline-block;
   }
 }

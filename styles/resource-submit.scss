@@ -1,13 +1,14 @@
-/* login form and registration form styling */
+/* resource-submit form styling goes here */
+
 .form-container {
     position: relative;
-    width: 450px;
-    height: 500px;
+    width: 550px;
+    height: 600px;
     display: flex;
     justify-content: center;
     float: left;
 
-    .login-form, .user-setting-form {
+    .add-resource-form {
       width: 100%;
       overflow: hidden;
       border-radius: 20px;
@@ -34,11 +35,25 @@
       z-index: 1;
     }
 
+    .input-container:nth-child(4) {
+      height: 100px;
+    }
+
+    .input-container:nth-child(5) {
+      padding-top: 30px;
+      padding-bottom: 5px;
+    }
+
     .form-control {
       height: 45px;
       border-radius: 27px;
       background: #ebebeb;
     }
+
+    #description {
+      height: 100px;
+    }
+
 
     .btn-container {
         justify-content: center;
@@ -58,18 +73,10 @@
     }
 
     .form-footer {
-      padding-top: 50px;
+      padding-top: 20px;
+      padding-bottom: 10px;
       text-align: center;
       font-size: 15px;
-
-      .to-register {
-        color: #28a745;
-        text-decoration: none;
-      }
+      color: #28a745;
     }
-}
-
-/* for positioning registration form */
-.form-container:nth-child(2) {
-    float: right;
 }

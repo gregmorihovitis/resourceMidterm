@@ -71,6 +71,11 @@ app.get("/settings", (req, res) => {
 });
 
 // route setup for testing purposes
+app.get("/resources/new", (req, res) => {
+  res.render("addNewResource");
+});
+
+// route setup for testing purposes
 app.get("/login", (req, res) => {
   const templateVars = {
     user_id: req.session.id
