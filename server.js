@@ -90,7 +90,8 @@ app.get('/register', (req, res) => {
   const templateVars = {
     user_id: req.session.id
   }
-  res.render('login', templateVars);
+  // changed to register to test route
+  res.render('register', templateVars);
 });
 
 app.get('/test', (req, res) => {
