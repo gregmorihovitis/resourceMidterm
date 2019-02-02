@@ -308,7 +308,7 @@ function newComment(input) {
     .then(function () { console.log("Testing adding a new comment"); });
 };
 
-newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
+//newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
 
 function deleteResource(resourceId) {
 

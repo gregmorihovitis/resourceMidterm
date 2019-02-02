@@ -123,7 +123,6 @@ app.get("/resources/:userId", (req, res) => {
   let pageResources = { userResources: {},
                         likedResources: {} };
 
-
   queries.findResourceByUserId(request.params.userId, (userResources) => {
     pageResources.userResources = json(userResources);
   });
