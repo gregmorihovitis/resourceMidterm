@@ -1,33 +1,29 @@
 body {
   /*background: url("/img/bg2.jpg");*/
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
 
   .container {
-    padding: 30px 30px 10px 30px;
     width: 100%;
+    margin: 0px 40px;
 
     .tagline-container {
-      /*background-color: #343a40;
-      opacity: 0.4;
-      color: #ffffff;*/
+      margin-bottom: 12%;
+      margin-right: 15%;
+      margin-top: 8%;
 
       .mainTagLine {
-        font-size: 64px;
+        font-size: 4em;
       }
 
       .subTagLine {
-        font-size: 21px;
+        font-size: 1.5em;
       }
+    }
+    @media (min-width: 576px) {
+      max-width: none;
     }
   }
 
- /* .resourceContainer {
+  /* .resourceContainer {
   }*/
 }
-
-
-
-
-
-
-
