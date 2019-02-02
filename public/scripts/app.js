@@ -25,21 +25,67 @@ function createResourceElement(resource) {
   return $resource;
 }
 
-function renderResources(resources) {
+function renderNeuro(resources) {
   resources.forEach(currResource => {
     $('#neuroRow').prepend(createResourceElement(currResource));
   });
 }
 
+function renderGraphic(resources) {
+  resources.forEach(currResource => {
+    $('#graphicRow').prepend(createResourceElement(currResource));
+  });
+}
 
-const populateTest = () => {
+function renderOctopus(resources) {
+  resources.forEach(currResource => {
+    $('#octopusRow').prepend(createResourceElement(currResource));
+  });
+}
+
+function renderCreative(resources) {
+  resources.forEach(currResource => {
+    $('#creativeRow').prepend(createResourceElement(currResource));
+  });
+}
+
+
+const populate = () => {
   $.ajax({
     method: "GET",
-    url: "/popTest"
+    url: "/popNeuro",
+    async: true
   })
     .done((resources) => {
-      renderResources(resources);
+      renderNeuro(resources);
     });;
+
+  $.ajax({
+    method: "GET",
+    url: "/popGraphic",
+    async: true
+  })
+    .done((resources) => {
+      renderGraphic(resources);
+    });;
+
+  $.ajax({
+    method: "GET",
+    url: "/popOctopus",
+    async: true
+  })
+    .done((resources) => {
+      renderOctopus(resources);
+    });;
+
+  $.ajax({
+    method: "GET",
+    url: "/popCreative",
+    async: true
+  })
+    .done((resources) => {
+      renderCreative(resources);
+    });;    
   console.log('populated');
 };
 
@@ -53,7 +99,7 @@ function divClick(id) {
 
 
 $(document).ready(function () {
-  populateTest();
+  populate();
   console.log('page loaded');
 })
 

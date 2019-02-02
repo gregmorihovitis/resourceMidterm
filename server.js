@@ -89,10 +89,28 @@ app.get('/test', (req, res) => {
   res.render('popTest');
 });
 
+//populate the topics
+app.get("/popNeuro", (req, res) => {
+  queries.findResourceByTopicId(1, (popNeuro) => {
+    res.json(popNeuro);
+  });
+});
 
-app.get("/popTest", (req, res) => {
-  queries.findAllResources((popTest) => {
-    res.json(popTest);
+app.get("/popGraphic", (req, res) => {
+  queries.findResourceByTopicId(3, (popGraphic) => {
+    res.json(popGraphic);
+  });
+});
+
+app.get("/popOctopus", (req, res) => {
+  queries.findResourceByTopicId(2, (popOctopus) => {
+    res.json(popOctopus);
+  });
+});
+
+app.get("/popCreative", (req, res) => {
+  queries.findResourceByTopicId(4, (popCreative) => {
+    res.json(popCreative);
   });
 });
 
@@ -178,6 +196,11 @@ app.get("/resources/:userId", (req, res) => {
 
 });
 
+// Route for loggin out a user. ** - Max NEW
+app.get("/logout", (req, res) => {
+  req.session.id = null;
+  res.redirect('/login');
+});
 
 // Route for when user searches recources ** -Max - NEW
 app.post("/search", (req, res) => {
@@ -213,13 +236,6 @@ app.post("/register", (req, res) => {
 });
 
 
-// Route for loggin out a user. ** - Max NEW
-app.get("/logout", (req, res) => {
-  req.session.id = null;
-  res.redirect('/login');
-});
-
-
 // Route for user creating a new resource     ** -Max NEW
 app.post("/resources/new", (req, res) => {
 
@@ -234,11 +250,11 @@ app.post("/resources/new", (req, res) => {
 
   queries.addResource(newResource);
 
-  res.redirect('/resources/:userId', newResource);
+  res.redirect('/resources/:userId');
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/resources/like', (req, res) => {
+app.put('/reources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 
