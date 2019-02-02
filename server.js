@@ -252,15 +252,15 @@ app.post("/resources/new", (req, res) => {
     url: req.body.url,
     title: req.body.title,
     description: req.body.description,
-    user_id: req.body.userId,
-    topic_id: req.body.topicID,
-    date_posted: req.body.date,
-    img_url: req.body.imgUrl
+    user_id: req.session.id,
+    topic_id: req.body.topic_id,
+    date_posted: req.body.date_posted,
+    img_url: req.body.img_url
   };
+  console.log(newResource);
+  // queries.newResource(newResource);
 
-  queries.addResource(newResource);
-
-  res.redirect('/resources/:userId');
+  res.redirect('/');
 });
 
 // Route for user liking a resource         ** -Max NEW
