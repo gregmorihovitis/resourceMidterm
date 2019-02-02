@@ -2,8 +2,8 @@
 
 .form-container {
     position: relative;
-    width: 450px;
-    height: 550px;
+    width: 550px;
+    height: 600px;
     display: flex;
     justify-content: center;
     float: left;
@@ -35,11 +35,25 @@
       z-index: 1;
     }
 
+    .input-container:nth-child(4) {
+      height: 100px;
+    }
+
+    .input-container:nth-child(5) {
+      padding-top: 30px;
+      padding-bottom: 5px;
+    }
+
     .form-control {
       height: 45px;
       border-radius: 27px;
       background: #ebebeb;
     }
+
+    #description {
+      height: 100px;
+    }
+
 
     .btn-container {
         justify-content: center;
