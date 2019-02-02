@@ -5,11 +5,16 @@
   position: relative;
   height: 32em;
   width: 20rem;
-  margin: 15px;
+  margin: 3% 1%;
+  border-radius: 15px;
+  background-color: whitesmoke;
+  border-style: none;
 
   img {
     height: 60%;
     margin-bottom: 10px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
   }
 
   .rBody {
@@ -36,4 +41,8 @@
     bottom: 0;
     height: 25px;
   }
+}
+
+.card:hover {
+  opacity: 0.6;
 }
