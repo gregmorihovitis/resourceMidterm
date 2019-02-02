@@ -64,16 +64,25 @@ app.get("/users", (req, res) => {
 
 // route setup for testing purposes
 app.get("/settings", (req, res) => {
-  res.render("settings");
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render("settings", templateVars);
 });
 
 // route setup for testing purposes
 app.get("/login", (req, res) => {
-  res.render("login");
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render("login", templateVars);
 });
 
 app.get('/register', (req, res) => {
-  res.render('login');
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render('login', templateVars);
 });
 
 app.get('/test', (req, res) => {
@@ -101,27 +110,36 @@ app.get("/resource", (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render(templateVars);
 });
 
 // Route for when user clicks on a resource ** -Max - NEW
 app.get("/resources/:resourceId", (req, res) => {
   console.log('get recieved', req.params.resourceId);
+  const templateVars = {
+    user_id: req.session.id
+  }
   queries.findResourceByResourceId(req.params.resourceId, (resource) => {
 
     let pageResources = resource;
     console.log(pageResources);
-    res.render('search');
+    res.render('search', templateVars);
   })
 })
 
 // Route for getting to a users information page ** -Max NEW
 app.get("/users/:userId", (req, res) => {
+  const templateVars = {
+    user_id: req.session.id
+  }
   queries.findUserById(request.params.userId, (userInfo) => {
 
     let pageResources = json(userInfo);
 
-    res.render('users', pageResources);
+    res.render('users', pageResources, templateVars);
   });
 });
 
@@ -134,6 +152,10 @@ app.get("/resources/:userId", (req, res) => {
     likedResources: {}
   };
 
+  const templateVars = {
+    user_id: req.session.id
+  }
+
 
   queries.findResourceByUserId(request.params.userId, (userResources) => {
     pageResources.userResources = json(userResources);
@@ -143,7 +165,7 @@ app.get("/resources/:userId", (req, res) => {
     pageResources.likedResources = json(likedResources);
   });
 
-  res.render('index', pageResources);
+  res.render('index', pageResources, templateVars);
 
 });
 
