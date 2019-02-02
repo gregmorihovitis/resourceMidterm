@@ -270,7 +270,7 @@ function newResource(input) {
     })
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function () { console.log() });
+    .then(function () { console.log('Testing adding a new resource'); });
 };
 
 //Test
@@ -288,6 +288,27 @@ Description: Deletes a resource to the resource table.
 Input: An input object with all the new resource data.
 Output: Adds new resource to the recource table.
 *******************************/
+
+/*******************************
+Description:Adds a comment to the comments table
+Input: An input object with all the new comment data.
+Output:
+*******************************/
+
+function newComment(input) {
+
+  knex('comments')
+    .insert({
+      resource_id: input.resourceId,
+      user_id: input.userId,
+      comment: input.comment
+    })
+    .returning('*')
+    .catch(err => console.log(err.message))
+    .then(function () { console.log("Testing adding a new comment"); });
+};
+
+newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
 
 function deleteResource(resourceId) {
 
