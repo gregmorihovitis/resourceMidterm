@@ -48,12 +48,18 @@ app.use(cookieSession({
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render("index", templateVars);
 });
 
 // route setup for testing purposes
 app.get("/users", (req, res) => {
-  res.render("users");
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render("users", templateVars);
 });
 
 // route setup for testing purposes
@@ -85,7 +91,8 @@ app.get("/resource", (req, res) => {
   queries.findCommentByResourceId(1, (comments) => {
     const templateVars = {
       //   comments: comments
-      comments: JSON.stringify(comments)
+      comments: JSON.stringify(comments),
+      user_id: req.session.id
       //just leave comments and remove json.stringify and parenthesis after**********
     }
     // queries.findResourceByUserId(1(resource))
@@ -102,9 +109,9 @@ app.get("/resources/:resourceId", (req, res) => {
   console.log('get recieved', req.params.resourceId);
   queries.findResourceByResourceId(req.params.resourceId, (resource) => {
 
-     let pageResources = resource;
-     console.log(pageResources);
-     res.render('search');
+    let pageResources = resource;
+    console.log(pageResources);
+    res.render('search');
   })
 })
 
@@ -122,8 +129,10 @@ app.get("/users/:userId", (req, res) => {
 // and liked resources                            ** -Max NEW
 app.get("/resources/:userId", (req, res) => {
 
-  let pageResources = { userResources: {},
-                        likedResources: {} };
+  let pageResources = {
+    userResources: {},
+    likedResources: {}
+  };
 
 
   queries.findResourceByUserId(request.params.userId, (userResources) => {
@@ -141,7 +150,7 @@ app.get("/resources/:userId", (req, res) => {
 
 // Route for when user searches recources ** -Max - NEW
 app.post("/search", (req, res) => {
-  queries.searchResources(req.body.searchTerm, (searchResults) =>{
+  queries.searchResources(req.body.searchTerm, (searchResults) => {
 
     let pageResources = json(searchResults);
 
@@ -182,12 +191,14 @@ app.post("/logout", (req, res) => {
 // Route for user creating a new resource     ** -Max NEW
 app.post("/resources/new", (req, res) => {
 
-  let newResource = {url: req.body.url,
-             description: req.body.description,
-             user_id: req.body.userId,
-             topic_id: req.body.topicID,
-             date_posted: req.body.date,
-             img_url: req.body.imgUrl};
+  let newResource = {
+    url: req.body.url,
+    description: req.body.description,
+    user_id: req.body.userId,
+    topic_id: req.body.topicID,
+    date_posted: req.body.date,
+    img_url: req.body.imgUrl
+  };
 
   queries.addResource(newResource);
 
@@ -220,9 +231,9 @@ app.post("/comments", (req, res) => {
 });
 
 app.post("/resources/:resourceId", (req, res) => {
-    console.log('post recieved', req.params.resourceId);
-    let urlName = `/resources/${req.params.resourceId}`
-     res.json({url: urlName});
+  console.log('post recieved', req.params.resourceId);
+  let urlName = `/resources/${req.params.resourceId}`
+  res.json({ url: urlName });
 })
 
 
