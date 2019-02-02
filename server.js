@@ -71,7 +71,7 @@ app.get("/settings", (req, res) => {
 });
 
 // route setup for testing purposes
-app.get("/new", (req, res) => {
+app.get("/resources/new", (req, res) => {
   res.render("addNewResource");
 });
 
