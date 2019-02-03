@@ -235,7 +235,24 @@ app.get('/popComments/:id', (req, res) => {
   });
 });
 
+app.get('/myResource', (req, res) => {
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render('users', templateVars);
+});
 
+app.get('/popMine', (req, res) => {
+  queries.findResourceByUserId(req.session.id, (popMine) => {
+    res.json(popMine);
+  });
+});
+
+app.get('/popLiked', (req, res) => {
+  queries.findResourceByUserLikes(req.session.id, (popLiked) => {
+    res.json(popLiked);
+  });
+});
 // route setup for changing user name
 
 // // Route for when user searches recources ** -Max - NEW
