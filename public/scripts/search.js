@@ -13,9 +13,9 @@ function createResourceElement(resource) {
     return $resource;
   }
   
-  function renderNeuro(resources) {
+  function renderSearch(resources) {
     resources.forEach(currResource => {
-      $('#searchContainer').prepend(createResourceElement(currResource));
+      $('#searchRow').prepend(createResourceElement(currResource));
     });
   }
   
