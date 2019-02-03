@@ -271,13 +271,6 @@ app.post("/resources/new", (req, res) => {
   res.redirect('/');
 });
 
-// Route for user liking a resource         ** -Max NEW
-app.put('/resources/like', (req, res) => {
-
-  queries.likeResource(req.session.id, resourceId);
-
-});
-
 // Route for user rating a resource       ** -Max
 
 //NEW comment routes - Julia
