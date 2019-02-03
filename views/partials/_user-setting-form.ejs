@@ -1,0 +1,21 @@
+<!-- user settings form component -->
+
+<!-- Once the form is being submitted, default behaviour will redirect users to /users route -->
+<form class="user-setting" action="/users" method="POST">
+  <span class="form-title">User Settings</span>
+  <div class="input-container">
+    <input id="changeHandle" type="text" name='changeHandle' class="form-control" placeholder="Handle">
+  </div>
+  <div class="input-container">
+    <input id="changeEmail" type="email" class="form-control" placeholder="Email">
+  </div>
+  <div class="input-container">
+    <input type="password" class="form-control" placeholder="Password">
+  </div>
+  <div class="btn-container">
+    <button type="submit" class="btn-submit">Submit</button>
+  </div>
+  <div class="form-footer">
+    <small id="disclaimer" class="form-text text-muted">We'll never share your account information with anyone else.</small>
+  </div>
+</form>
