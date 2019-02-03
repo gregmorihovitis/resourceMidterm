@@ -68,6 +68,74 @@ body {
       opacity: 1;
     }
 
+    //COPIED CSS CODE FROM CODEPEN FOR STAR RATINGS
+    .rating {
+      // display: inline-block;
+      position: relative;
+      font-size: 2em;
+      float: right;
+    }
+
+    .rating label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .rating label:last-child {
+      position: static;
+    }
+
+    .rating label:nth-child(1) {
+      z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+      z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+      z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+      z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+      z-index: 1;
+    }
+
+    .rating label input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .rating label .icon {
+      float: left;
+      color: transparent;
+    }
+
+    .rating label:last-child .icon {
+      color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+      color: #007bff;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+      color: #000;
+      text-shadow: 0 0 5px #007bff;
+    }
+
+    //END COPIED CSS CODE FOR STAR RATING
+
     .comments-container {
       width: 100%;
 
@@ -99,8 +167,8 @@ body {
     }
 
     form {
-      padding-bottom: 7px;
-      margin-bottom: 15px;
+      // padding-bottom: 7px;
+      // margin-bottom: 15px;
 
       textarea {
         width: 100%;

@@ -2,16 +2,13 @@
 
 <!-- Once the form is being submitted, default behaviour will redirect users to /users route -->
 <form class="user-setting" action="/users" method="POST">
-  <span class="form-title">User Settings</span>
+  <span class="form-title">User Settings for -
+    <%= user_id %> </span>
+
   <div class="input-container">
-    <input id="changeHandle" type="text" name='changeHandle' class="form-control" placeholder="Handle">
+    <input id="changeHandle" type="text" name='newName' class="form-control" placeholder="Name">
   </div>
-  <div class="input-container">
-    <input id="changeEmail" type="email" class="form-control" placeholder="Email">
-  </div>
-  <div class="input-container">
-    <input type="password" class="form-control" placeholder="Password">
-  </div>
+
   <div class="btn-container">
     <button type="submit" class="btn-submit">Submit</button>
   </div>
