@@ -167,13 +167,21 @@ app.get("/resources/:resourceId", (req, res) => {
 })
 
 // Route for getting to a users information page ** -Max NEW
+// updated 030219   still not wokring tho... by Arthur
 app.get("/users/:userId", (req, res) => {
   const templateVars = {
     user_id: req.session.id
   }
-  queries.findUserById(request.params.userId, (userInfo) => {
+  queries.findUserById(req.params.userId, (userInfo) => {
 
-    let pageResources = json(userInfo);
+    let pageResources = {};
+
+    pageResources.userHandle = JSON.stringify(userInfo.name);
+    pageResources.occupation = JSON.stringify(userinfo.occupation);
+    pageResources.email = JSON.stringify(userInfo.email);
+
+
+    console.log(userInfo);
 
     res.render('users', pageResources, templateVars);
   });
