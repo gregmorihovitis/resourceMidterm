@@ -141,12 +141,7 @@ app.get('/search', (req, res) => {
 });
 
 //added new route for new resources - JR ****
-app.get("/resources/new", (req, res) => {
-  const templateVars = {
-    user_id: req.session.id
-  }
-  res.render('addNewResource', templateVars);
-});
+
 
 app.get('/popResource/:id', (req, res) => {
   console.log('NOW THIS', req.params.id);
@@ -166,6 +161,13 @@ app.get("/resources/:resourceId", (req, res) => {
   res.render('resource', templateVars);
 });
 
+app.get("/resources/new", (req, res) => {
+  const templateVars = {
+    user_id: req.session.id
+  }
+  res.render('addNewResource', templateVars);
+});
+
 // Route for getting to a users information page ** -Max NEW
 app.get("/users/:userId", (req, res) => {
   const templateVars = {
@@ -181,29 +183,29 @@ app.get("/users/:userId", (req, res) => {
 
 // Route for getting all of a users resources
 // and liked resources                            ** -Max NEW
-app.get("/resources/:userId", (req, res) => {
+// app.get("/resources/:userId", (req, res) => {
 
-  let pageResources = {
-    userResources: {},
-    likedResources: {}
-  };
+//   let pageResources = {
+//     userResources: {},
+//     likedResources: {}
+//   };
 
-  const templateVars = {
-    user_id: req.session.id
-  }
+//   const templateVars = {
+//     user_id: req.session.id
+//   }
 
 
-  queries.findResourceByUserId(request.params.userId, (userResources) => {
-    pageResources.userResources = json(userResources);
-  });
+//   queries.findResourceByUserId(request.params.userId, (userResources) => {
+//     pageResources.userResources = json(userResources);
+//   });
 
-  queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
-    pageResources.likedResources = json(likedResources);
-  });
+//   queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
+//     pageResources.likedResources = json(likedResources);
+//   });
 
-  res.render('index', pageResources, templateVars);
+//   res.render('index', pageResources, templateVars);
 
-});
+// });
 
 // Route for loggin out a user. ** - Max NEW
 app.get("/logout", (req, res) => {
@@ -289,7 +291,7 @@ app.post("/comments", (req, res) => {
 
 app.post("/resources/:resourceId", (req, res) => {
   console.log('post recieved', req.params.resourceId);
-  let urlName = `/resources/${req.params.resourceId}`
+  let urlName = `/resources/${req.params.resourceId}`;
   res.json({ url: urlName });
 })
 

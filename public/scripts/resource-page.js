@@ -3,7 +3,7 @@ function createResourceElement(resource) {
   let $resource =`
   <article class="resource-container">
     <!-- Resource includes main image, title, and description -->
-    <img src=${resource.img_url} class="main-img" height="280" width="auto">
+    <img src=${resource[0].img_url} class="main-img" height="280" width="auto">
     <!-- Like/Rate buttons-->
     <section class="like-rate">
       <button class="btn"><img src="/images/like.png"></button>
@@ -11,9 +11,9 @@ function createResourceElement(resource) {
     <!-- Resource titles and description -->
     <span class="resource-text" >
       <h2>
-        <a href=${resource.url}>${resource.title}</a>
+        <a href=${resource[0].url}>${resource[0].title}</a>
       </h2>
-      <p>${resource.description}</p>
+      <p>${resource[0].description}</p>
     </span>
     <!-- Comment submission form -->
     <section class="new-comment">
