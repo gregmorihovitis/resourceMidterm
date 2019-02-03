@@ -48,14 +48,32 @@ Output:
 
 function findResourceByResourceId(resourceId, cb) {
 
-  knex('resources')
+  knex
+  .from('resources')
   .select('*')
   .where('id', resourceId)
+  .join("comments", resourceId, "comments.resource_id")
   .then(rows => {
     cb(rows);
   })
-  .catch(err => console.log('find resouce 2', err.message));
+  .catch(err => console.log('find resource 1', err.message));
 }
+
+//findResourceByResourceId(1, function(results) {console.log(results);});
+
+
+//   knex('comments')
+//     .select('*')
+//     .where('resource_id', resourceId)
+//     //edited join -JR
+//     .join("users", "comments.id", "users.id")
+//     //was testing below to try and join resource table
+//     // .join("resources", "comments.id", "resource.id")
+//     .then(rows => {
+//       cb(rows);
+//     })
+//     .catch(err => console.log("error: ", err.message));
+// }
 
 
 //Test
@@ -275,15 +293,34 @@ function newResource(input) {
     .then(function () { console.log() });
 };
 
+newResource({url: 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes',
+             title: 'MDN: Express Tutorials',
+             description: 'A tutorial for using route controlers.',
+             user_id: '1',
+             topic_id: 2,
+             date_posted: '31 Jan 2019',
+             img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
+
+
+
+function newComment(input) {
+
+  knex('comments')
+  .insert({
+    resource_id: input.resourceId,
+    user_id: input.userId,
+    comment: input.comments
+  })
+  .returning('*')
+  .catch(err => console.log(err.message))
+  .then(function () { console.log('New comment added'); });
+
+};
+
+//newComment({resourceId: 1, userId: 2, comments: "This is a test"});
+
 //Test
 //console.log("Testing adding a new resource.");
-// newResource({url: 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes',
-//              title: 'MDN: Express Tutorials',
-//              description: 'A tutorial for using route controlers.',
-//              user_id: 1,
-//              topic_id: 2,
-//              date_posted: '31 Jan 2019',
-//              img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
 
 /*******************************
 Description: Deletes a resource to the resource table.

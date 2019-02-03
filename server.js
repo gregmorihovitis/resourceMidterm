@@ -145,27 +145,38 @@ app.get("/users/:userId", (req, res) => {
 
 // Route for getting all of a users resources
 // and liked resources                            ** -Max NEW
-app.get("/resources/:userId", (req, res) => {
+app.get("/resources/:userId/json", (req, res) => {
 
-  let pageResources = {
-    userResources: {},
-    likedResources: {}
-  };
+  let pageResources = {test: 'test'};
 
-  const templateVars = {
-    user_id: req.session.id
-  }
+  // const templateVars = {
+  //   user_id: req.session.id
+  // }
+
+//pageResources.userResources = {test: 'test string'};
+
+// (async function() {
+
+//     let firstQuery = await queries.findResourceByUserId(req.params.userId, (userResources) => {
+//         pageResources[userResources] = userResources;
+//         console.log("after resources by userid: ", pageResources); })
 
 
-  queries.findResourceByUserId(request.params.userId, (userResources) => {
-    pageResources.userResources = json(userResources);
-  });
+//     let secondQuery = await queries.findResourceByUserLikes(req.params.userId, (likedResources) => {
+//         pageResources[likedResources] = likedResources;
+//         console.log("after resources by user likes: ",pageResources); })
 
-  queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
-    pageResources.likedResources = json(likedResources);
-  });
 
-  res.render('index', pageResources, templateVars);
+//     pageResources = {test: 'test2'};
+//     return res.json(pageResources);
+
+// }())
+
+queries.findResourceByResourceId(req.params.userId, (results) =>
+  console.log("resource and comments: ", results))
+
+return res.json(pageResources)
+
 
 });
 
