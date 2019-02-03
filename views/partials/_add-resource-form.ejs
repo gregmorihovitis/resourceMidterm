@@ -1,23 +1,23 @@
 <!-- add resource form component -->
-<form class="add-resource-form" method="POST">
+<form class="add-resource-form" method="POST" action="/resources/new">
   <span class="form-title">Submit A New Resource</span>
   <div class="input-container">
-    <input type="text" class="form-control" placeholder="URL">
+    <input type="text" class="form-control" placeholder="URL" name="url">
   </div>
   <div class="input-container">
-    <input type="text" class="form-control" placeholder="Title">
+    <input type="text" class="form-control" placeholder="Title" name="title">
   </div>
   <div class="input-container">
-    <textarea id="description" class="form-control" placeholder="Description"></textarea>
+    <textarea id="description" class="form-control" placeholder="Description" name="description"></textarea>
   </div>
   <div class="input-container">
     <!-- Topic select menu-->
     Select Topic:
-    <select>
-        <option value="1">Neuroscience</option>
-        <option value="2">Graphic Design</option>
-        <option value="3">Octopus</option>
-        <option value="4">Creative code</option>
+    <select name="topic_id">
+      <option value="1">Neuroscience</option>
+      <option value="2">Graphic Design</option>
+      <option value="3">Octopus</option>
+      <option value="4">Creative code</option>
     </select>
   </div>
   <div class="btn-container">
