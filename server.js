@@ -173,19 +173,17 @@ app.get("/resources/new", (req, res) => {
 });
 
 // Route for getting to a users information page ** -Max NEW
-//doesn't work yet
+//doesn't work yet ----DOESN'T WORK - SHOULD DELETE SOON AFTER MYRESOURCES IS CREATED
 
-app.get("/users/:userId", (req, res) => {
-  const templateVars = {
-    user_id: req.session.id
-  }
-  queries.findUserById(request.params.userId, (userInfo) => {
+// app.get("/users/:userId", (req, res) => {
+//   const templateVars = {
+//     userId: req.session.id
+//   }
+//   console.log('THIS ONE', req.params.userId);
 
-    let pageResources = json(userInfo);
 
-    res.render('users', pageResources, templateVars);
-  });
-});
+//   res.render('users/' + req.session.id, templateVars);
+// });
 
 // Route for getting all of a users resources
 // and liked resources                            ** -Max NEW
@@ -229,12 +227,11 @@ app.post("/search", (req, res) => {
   });
 });
 
-// route setup for testing purposes
+// route setup for changing user name
 app.post("/users", (req, res) => {
-  queries.findResourceByResourceId(req.session.id, (testData) => {
-    console.log('Data Recieved');
-    res.redirect(testData[0].url);
-  });
+  queries.updateUserInfo(req.session.id, { name: req.body.newName }, function () {
+    res.redirect("/settings");
+  })
 });
 
 app.post('/login', (req, res) => {
