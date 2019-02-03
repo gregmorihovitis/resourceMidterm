@@ -148,19 +148,23 @@ app.get("/resources/new", (req, res) => {
   res.render('addNewResource', templateVars);
 });
 
+app.get('/popResource/:id', (req, res) => {
+  console.log('NOW THIS', req.params.id);
+  queries.findResourceByResourceId(req.params.id, (popResource) => {
+    console.log(popResource);
+    res.json(popResource);
+  });
+});
+
 // Route for when user clicks on a resource ** -Max - NEW
 app.get("/resources/:resourceId", (req, res) => {
-  console.log('get recieved', req.params.resourceId);
+  console.log('THIS ONE', req.params.resourceId);
   const templateVars = {
-    user_id: req.session.id
+    user_id: req.session.id,
+    resource_id: req.params.resourceId
   }
-  queries.findResourceByResourceId(req.params.resourceId, (resource) => {
-
-    let pageResources = resource;
-    console.log(pageResources);
-    res.render('search', templateVars);
-  })
-})
+  res.render('resource', templateVars);
+});
 
 // Route for getting to a users information page ** -Max NEW
 app.get("/users/:userId", (req, res) => {

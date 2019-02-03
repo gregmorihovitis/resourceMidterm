@@ -355,6 +355,7 @@ module.exports = {
   rateResource,
   newResource,
   deleteResource,
-  newUser
+  newUser,
+  searchResources
 
 };

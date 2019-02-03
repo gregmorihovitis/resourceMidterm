@@ -1,16 +1,4 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-// });
-
-
-
+//Creates and Populates each individual topic section
 function createResourceElement(resource) {
   let $resource = `
   <div id = ${resource.id} class="card" onClick = 'divClick(this.id)' >

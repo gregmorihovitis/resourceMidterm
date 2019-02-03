@@ -9,7 +9,7 @@ function createResourceElement(resource) {
       <button class="btn"><img src="/images/like.png"></button>
     </section>
     <!-- Resource titles and description -->
-    <span class="resource-text">
+    <span class="resource-text" >
       <h2>
         <a href=${resource.url}>${resource.title}</a>
       </h2>
@@ -25,19 +25,33 @@ function createResourceElement(resource) {
     </section>
     <!-- Comments container: has avatars, usernames, and comment -->
     <div class="comments-container">
-      <!-- Appends comments from JSON object  -->
-      <% JSON.parse(comments).forEach(function(comment){ %>
-      <section class="unique-comment">
-        <img src="/images/avatar.png" height="40" width="auto" class="avatar">
-        <p class="user-handle">
-          <%= comment.name %>
-        </p>
-        <span class="comment">
-          <%= comment.comment %></span>
-      </section>
-      <% }); %>
 
     </div>
-  </article></div>`  
-    return $resource;
-  }
+  </article>
+  `  
+  
+  return $resource;
+}
+
+function renderResource(resource){
+  console.log(createResourceElement(resource));
+  $('body.mainContainer').append(createResourceElement(resource));
+};
+
+const populateResource = () => {
+  console.log('Secret text:', $('#secret').text());
+
+  $.ajax({
+    method: "GET",
+    url: `/popResource/${$('#secret').text()}`,
+  })
+    .done((resource) => {
+      renderResource(resource);
+    });;
+}
+
+$(document).ready(function () {
+  populateResource();
+ 
+  console.log('resource loaded');
+})
