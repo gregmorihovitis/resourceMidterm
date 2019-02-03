@@ -259,7 +259,7 @@ app.post("/resources/new", (req, res) => {
 
   queries.addResource(newResource);
 
-  res.redirect('/resources/:userId');
+  res.redirect('/');
 });
 
 // Route for user liking a resource         ** -Max NEW
