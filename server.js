@@ -221,12 +221,9 @@ app.get("/logout", (req, res) => {
 
 // Route for when user searches recources ** -Max - NEW
 app.post("/search", (req, res) => {
-  queries.searchResources(req.body.searchTerm, (searchResults) => {
-
-    let pageResources = json(searchResults);
+    let pageResources = {search_term: req.body.searchTerm};
 
     res.redirect('search', pageResources);
-  });
 });
 
 // route setup for testing purposes

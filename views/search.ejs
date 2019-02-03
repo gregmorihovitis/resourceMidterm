@@ -24,6 +24,8 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
   <body>
+    <span id='secret' hidden><%= search_term %></span> 
+
     <!-- navbar -->
      <% include partials/_navbar.ejs %>
     <!-- -->
@@ -35,5 +37,5 @@
 
     </section>
     <!-- content -->
-    <section id="resourceContainer" class="container">
+    <section id="searchContainer" class="container">
     </section>
