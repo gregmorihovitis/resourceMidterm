@@ -39,7 +39,34 @@
   <section class="container">
     <!-- add new resource form here -->
     <section class="form-container">
-      <% include partials/_add-resource-form.ejs %>
+      <form class="add-resource-form" method="POST" action="/resources/new">
+        <span class="form-title">Submit A New Resource</span>
+        <div class="input-container">
+          <input type="text" class="form-control" placeholder="URL" name="url">
+        </div>
+        <div class="input-container">
+          <input type="text" class="form-control" placeholder="Title" name="title">
+        </div>
+        <div class="input-container">
+          <textarea id="description" class="form-control" placeholder="Description" name="description"></textarea>
+        </div>
+        <div class="input-container">
+          <!-- Topic select menu-->
+          Select Topic:
+          <select name="topic_id">
+            <option value="1">Neuroscience</option>
+            <option value="2">Graphic Design</option>
+            <option value="3">Octopus</option>
+            <option value="4">Creative code</option>
+          </select>
+        </div>
+        <div class="btn-container">
+          <button type="submit" class="btn-submit">SUBMIT</button>
+        </div>
+        <div class="form-footer">
+          <p class="thank-you-text">Thank you for your contribution to Resource Wall!</p>
+        </div>
+      </form>
     </section>
   </section>
 </body>

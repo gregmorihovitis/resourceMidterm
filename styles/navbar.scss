@@ -3,6 +3,7 @@
 /* navbar styling NOT FINISHED YET */
 nav {
   background-color: #343a40;
+  height: 5em;
 
   .form-inline {
     width: 100%;
@@ -24,5 +25,9 @@ nav {
 
   .navbar-nav li {
     display: inline-block;
+  }
+
+  .navbar-brand {
+    margin-right: 3rem;
   }
 }

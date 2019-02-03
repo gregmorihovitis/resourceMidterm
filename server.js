@@ -145,6 +145,26 @@ app.get('/search', (req, res) => {
 });
 
 //added new route for new resources - JR ****
+
+
+app.get('/popResource/:id', (req, res) => {
+  console.log('NOW THIS', req.params.id);
+  queries.findResourceByResourceId(req.params.id, (popResource) => {
+    console.log(popResource);
+    res.json(popResource);
+  });
+});
+
+// Route for when user clicks on a resource ** -Max - NEW
+app.get("/resources/:resourceId", (req, res) => {
+  console.log('THIS ONE', req.params.resourceId);
+  const templateVars = {
+    user_id: req.session.id,
+    resource_id: req.params.resourceId
+  }
+  res.render('resource', templateVars);
+});
+
 app.get("/resources/new", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -152,21 +172,9 @@ app.get("/resources/new", (req, res) => {
   res.render('addNewResource', templateVars);
 });
 
-// Route for when user clicks on a resource ** -Max - NEW
-app.get("/resources/:resourceId", (req, res) => {
-  console.log('get recieved', req.params.resourceId);
-  const templateVars = {
-    user_id: req.session.id
-  }
-  queries.findResourceByResourceId(req.params.resourceId, (resource) => {
-
-    let pageResources = resource;
-    console.log(pageResources);
-    res.render('search', templateVars);
-  })
-})
-
 // Route for getting to a users information page ** -Max NEW
+//doesn't work yet
+
 app.get("/users/:userId", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -181,29 +189,29 @@ app.get("/users/:userId", (req, res) => {
 
 // Route for getting all of a users resources
 // and liked resources                            ** -Max NEW
-app.get("/resources/:userId", (req, res) => {
+// app.get("/resources/:userId", (req, res) => {
 
-  let pageResources = {
-    userResources: {},
-    likedResources: {}
-  };
+//   let pageResources = {
+//     userResources: {},
+//     likedResources: {}
+//   };
 
-  const templateVars = {
-    user_id: req.session.id
-  }
+//   const templateVars = {
+//     user_id: req.session.id
+//   }
 
 
-  queries.findResourceByUserId(request.params.userId, (userResources) => {
-    pageResources.userResources = json(userResources);
-  });
+//   queries.findResourceByUserId(request.params.userId, (userResources) => {
+//     pageResources.userResources = json(userResources);
+//   });
 
-  queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
-    pageResources.likedResources = json(likedResources);
-  });
+//   queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
+//     pageResources.likedResources = json(likedResources);
+//   });
 
-  res.render('index', pageResources, templateVars);
+//   res.render('index', pageResources, templateVars);
 
-});
+// });
 
 // Route for loggin out a user. ** - Max NEW
 app.get("/logout", (req, res) => {
@@ -250,20 +258,21 @@ app.post("/resources/new", (req, res) => {
 
   let newResource = {
     url: req.body.url,
+    title: req.body.title,
     description: req.body.description,
-    user_id: req.body.userId,
-    topic_id: req.body.topicID,
-    date_posted: req.body.date,
-    img_url: req.body.imgUrl
+    user_id: req.session.id,
+    topic_id: req.body.topic_id,
+    date_posted: req.body.date_posted,
+    img_url: req.body.img_url
   };
 
-  queries.addResource(newResource);
+  queries.newResource(newResource);
 
   res.redirect('/');
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/reources/like', (req, res) => {
+app.put('/resources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 
@@ -289,7 +298,7 @@ app.post("/comments", (req, res) => {
 
 app.post("/resources/:resourceId", (req, res) => {
   console.log('post recieved', req.params.resourceId);
-  let urlName = `/resources/${req.params.resourceId}`
+  let urlName = `/resources/${req.params.resourceId}`;
   res.json({ url: urlName });
 })
 
