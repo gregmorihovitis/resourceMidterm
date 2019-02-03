@@ -137,11 +137,13 @@ app.get("/resource", (req, res) => {
   });
 });
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
+  console.log('searching: ',req.body.searchTerm);
   const templateVars = {
-    user_id: req.session.id
+    user_id: req.session.id,
+    search_term: req.body.searchTerm
   }
-  res.render(templateVars);
+  res.render('search', templateVars);
 });
 
 //added new route for new resources - JR ****
@@ -211,23 +213,39 @@ app.get("/resources/new", (req, res) => {
 
 // });
 
+app.get('/popSearch/:searchTerm', (req, res) => {
+  console.log(req.params.searchTerm);
+  queries.searchResources(req.params.searchTerm, (popSearch) => {
+    console.log(popSearch);
+    res.json(popSearch);
+  });
+});
+
 // Route for loggin out a user. ** - Max NEW
 app.get("/logout", (req, res) => {
   req.session.id = null;
   res.redirect('/login');
 });
 
-// Route for when user searches recources ** -Max - NEW
-app.post("/search", (req, res) => {
-  queries.searchResources(req.body.searchTerm, (searchResults) => {
-
-    let pageResources = json(searchResults);
-
-    res.redirect('search', pageResources);
+app.get('/popComments/:id', (req, res) => {
+  console.log('loading comments by id:', req.params.id);
+  queries.findCommentByResourceId(req.params.id, (popComments) => {
+    console.log(popComments);
+    res.json(popComments);
   });
 });
 
+
 // route setup for changing user name
+
+// // Route for when user searches recources ** -Max - NEW
+// app.post("/search/:searchTerm", (req, res) => {
+
+//   res.json('search', temp)
+// });
+
+// route setup for testing purposes
+
 app.post("/users", (req, res) => {
   queries.updateUserInfo(req.session.id, { name: req.body.newName }, function () {
     res.redirect("/settings");
@@ -286,7 +304,7 @@ app.post("/comments", (req, res) => {
   console.log(comment);
   queries.newComment(comment);
 
-  res.status(200);
+  res.redirect(`/resources/${req.body.id}`);
 });
 
 //NEW 'like' route - Julia

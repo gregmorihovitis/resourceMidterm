@@ -56,7 +56,7 @@ function createResourceElement(resource) {
       <form action="/comments" method="POST">
         <textarea autofocus name="text" placeholder="What do you think?"></textarea>
         <input type="hidden" name="id" value=${resource[0].id}>
-        <input type="submit" value="comment">
+        <input id='addComment' type='submit' value="comment"  ></input>
       </form>
     </section>
     <!-- Comments container: has avatars, usernames, and comment -->
@@ -68,26 +68,64 @@ function createResourceElement(resource) {
   return $resource;
 }
 
+function createCommentElement(comment){
+  let $comment = `
+    <section class="unique-comment">
+      <img src="/images/avatar.png" height="40" width="auto" class="avatar">
+      <p class="user-handle">${comment.name}</p>
+      <span class="comment">${comment.comment}</span>
+    </section>
+  `
+  return $comment;
+}
+
 function renderResource(resource) {
   console.log(createResourceElement(resource));
   $('body.mainContainer').append(createResourceElement(resource));
-};
+}
+
+function renderComments(comments){
+  // if($('.comment').val() === undefined){
+    comments.forEach(currComment => {
+      $('.comments-container').prepend(createCommentElement(currComment));
+    });
+  // }else{
+    // let lastComment = comments[comments.length - 1];
+    
+    // $('.comments-container').prepend(createCommentElement(lastComment));
+  // }
+}
+
+function addComment(){
+  popComment();
+}
 
 const populateResource = () => {
   console.log('Secret text:', $('#secret').text());
 
   $.ajax({
     method: "GET",
-    url: `/popResource/${$('#secret').text()}`,
+    url: `/popResource/${$('#secret').text()}`
   })
     .done((resource) => {
       renderResource(resource);
 
-    });;
+    });
+}
+
+const popComment = () => {
+  $.ajax({
+    method: 'GET',
+    url: `/popComments/${$('#secret').text()}`
+  })
+    .done((comments) => {
+      renderComments(comments);
+    });
 }
 
 $(document).ready(function () {
   populateResource();
+  popComment();
 
   // changes like button opacity on 'like' click  - Julia
   // $('.resource-container .like-rate').click(function () {
