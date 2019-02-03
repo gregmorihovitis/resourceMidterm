@@ -229,6 +229,14 @@ app.get("/logout", (req, res) => {
   res.redirect('/login');
 });
 
+app.get('/popComments/:id', (req, res) => {
+  console.log('loading comments by id:', req.params.id);
+  queries.findCommentByResourceId(req.params.id, (popComments) => {
+    console.log(popComments);
+    res.json(popComments);
+  });
+});
+
 // // Route for when user searches recources ** -Max - NEW
 // app.post("/search/:searchTerm", (req, res) => {
 
@@ -302,7 +310,7 @@ app.post("/comments", (req, res) => {
   console.log(comment);
   queries.newComment(comment);
 
-  res.status(200);
+  res.redirect(`/resources/${req.body.id}`);
 });
 
 //NEW 'like' route - Julia
