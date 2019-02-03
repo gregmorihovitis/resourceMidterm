@@ -213,6 +213,13 @@ app.get("/users/:userId", (req, res) => {
 
 // });
 
+app.get('/popSearch/:searchTerm', (req, res) => {
+  console.log(req.params.searchTerm);
+  queries.searchResources(req.params.searchTerm, (popSearch) => {
+    res.json(popSearch);
+  });
+});
+
 // Route for loggin out a user. ** - Max NEW
 app.get("/logout", (req, res) => {
   req.session.id = null;
