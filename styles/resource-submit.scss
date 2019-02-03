@@ -1,82 +1,76 @@
 /* resource-submit form styling goes here */
 
 .form-container {
+  position: relative;
+  width: 550px;
+  height: 660px;
+  display: flex;
+  justify-content: center;
+  float: left;
+
+  .add-resource-form {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     position: relative;
-    width: 550px;
-    height: 550px;
-    display: flex;
+  }
+
+  .form-title {
+    background-color: #343a40;
+    color: #fff;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+  }
+
+  .input-container {
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    z-index: 1;
+  }
+
+  .input-container:nth-child(5) {
+    padding-bottom: 5px;
+  }
+
+  .form-control {
+    height: 45px;
+    border-radius: 27px;
+    background: #ebebeb;
+  }
+
+  #description {
+    height: 100px;
+  }
+
+  .btn-container {
     justify-content: center;
-    float: left;
+    display: flex;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    height: 70px;
 
-    .add-resource-form {
+    .btn-submit {
       width: 100%;
-      overflow: hidden;
-      border-radius: 20px;
-      -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    .form-title {
+      border-radius: 27px;
       background-color: #343a40;
       color: #fff;
-      font-size: 30px;
-      padding-top: 30px;
-      padding-bottom: 30px;
-      margin-bottom: 20px;
-      display: block;
-      text-align: center;
     }
+  }
 
-    .input-container {
-      padding-left: 55px;
-      padding-right: 55px;
-      padding-top: 15px;
-      padding-bottom: 10px;
-      z-index: 1;
-    }
-
-    .input-container:nth-child(4) {
-      height: 100px;
-    }
-
-    .input-container:nth-child(5) {
-      padding-top: 30px;
-      padding-bottom: 5px;
-    }
-
-    .form-control {
-      height: 45px;
-      border-radius: 27px;
-      background: #ebebeb;
-    }
-
-    #description {
-      height: 100px;
-    }
-
-
-    .btn-container {
-        justify-content: center;
-        display: flex;
-        padding-left: 55px;
-        padding-right: 55px;
-        padding-top: 15px;
-        padding-bottom: 10px;
-        height: 70px;
-
-        .btn-submit {
-          width: 100%;
-          border-radius: 27px;
-          background-color: #343a40;
-          color: #fff;
-        }
-    }
-
-    .form-footer {
-      padding-top: 20px;
-      padding-bottom: 10px;
-      text-align: center;
-      font-size: 15px;
-      color: #28a745;
-    }
+  .form-footer {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 15px;
+    color: #28a745;
+  }
 }
