@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
 
 body {
-  background-color: #eee;
-
+  background-color: white;
   h1 {
     font-family: Inconsolata;
   }
@@ -32,8 +31,10 @@ body {
 
   .resource-container {
     width: 70%;
-    margin: 10% 15%;
+    margin: 8% 15%;
     border-radius: 10px;
+    padding: 4%;
+    background-color: whitesmoke;
 
     .resource-text {
       p {
