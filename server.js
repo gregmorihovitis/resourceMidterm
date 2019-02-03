@@ -167,6 +167,8 @@ app.get("/resources/:resourceId", (req, res) => {
 })
 
 // Route for getting to a users information page ** -Max NEW
+//doesn't work yet
+
 app.get("/users/:userId", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -257,14 +259,14 @@ app.post("/resources/new", (req, res) => {
     date_posted: req.body.date_posted,
     img_url: req.body.img_url
   };
-  console.log(newResource);
-  // queries.newResource(newResource);
+
+  queries.newResource(newResource);
 
   res.redirect('/');
 });
 
 // Route for user liking a resource         ** -Max NEW
-app.put('/reources/like', (req, res) => {
+app.put('/resources/like', (req, res) => {
 
   queries.likeResource(req.session.id, resourceId);
 
