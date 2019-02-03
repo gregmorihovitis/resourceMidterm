@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
 
 body {
-  background-color: #eee;
-
+  background-color: white;
   h1 {
     font-family: Inconsolata;
   }
@@ -32,8 +31,10 @@ body {
 
   .resource-container {
     width: 70%;
-    margin: 10% 15%;
+    margin: 8% 15%;
     border-radius: 10px;
+    padding: 4%;
+    background-color: whitesmoke;
 
     .resource-text {
       p {
@@ -53,6 +54,14 @@ body {
       margin-left: 15px;
       transition: opacity 700ms linear;
       opacity: 0.5;
+
+      // form .btn {
+      //   opacity: 0.5;
+      // }
+
+      // form .btn:active {
+      //   opacity: 1;
+      // }
     }
 
     .like-rate:hover {
@@ -61,8 +70,6 @@ body {
 
     .comments-container {
       width: 100%;
-      // border-style: solid;
-      // border-width: 1px;
 
       .unique-comment {
         background-color: aliceblue;
@@ -104,8 +111,7 @@ body {
       }
 
       input {
-        background-color: whitesmoke;
-        border-color: white;
+        background-color: rgb(211, 211, 211);
         border-radius: 10px;
         padding: 8px 10px;
         font-family: Inconsolata;

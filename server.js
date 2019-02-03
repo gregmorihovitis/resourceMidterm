@@ -148,7 +148,7 @@ app.get('/search', (req, res) => {
 
 
 app.get('/popResource/:id', (req, res) => {
-  console.log('NOW THIS', req.params.id);
+  // console.log('NOW THIS', req.params.id);
   queries.findResourceByResourceId(req.params.id, (popResource) => {
     console.log(popResource);
     res.json(popResource);
@@ -289,12 +289,29 @@ app.post("/comments", (req, res) => {
   //make function that checks if a user is logged in
   // const user = req.body.user ?
   const comment = {
-    user: req.body.user,
-    text: req.body.text
+    resourceId: req.body.id,
+    userId: req.session.id,
+    comment: req.body.text
   }
-  //needs to be fixed - only redirects to comments JSON element right now
-  res.json(comment)
+  console.log(comment);
+  queries.newComment(comment);
+
+  res.status(200);
 });
+
+//NEW 'like' route - Julia
+app.post("/like", (req, res) => {
+  const like = {
+    user_id: req.session.id,
+    value: req.value
+  }
+
+  queries.likeResource(req.session.id, req.body.id)
+  console.log("resource liked!")
+  res.status(200);
+});
+
+
 
 app.post("/resources/:resourceId", (req, res) => {
   console.log('post recieved', req.params.resourceId);
