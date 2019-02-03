@@ -22,6 +22,7 @@ function createResourceElement(resource) {
       <h4 id="compose-header">Add comment</h4>
       <form action="/comments" method="POST">
         <textarea autofocus name="text" placeholder="What do you think?"></textarea>
+        <input type="hidden" name="id" value=${resource[0].id}>
         <input type="submit" value="comment">
       </form>
     </section>

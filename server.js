@@ -289,15 +289,14 @@ app.post("/comments", (req, res) => {
   //make function that checks if a user is logged in
   // const user = req.body.user ?
   const comment = {
-    resource_id: req.params.resourceId,
-    user_id: req.session.id,
-    text: req.body.text
+    resourceId: req.body.id,
+    userId: req.session.id,
+    comment: req.body.text
   }
-  // console.log(req.body);
-  // queries.newComment(comment)
+  console.log(comment);
+  queries.newComment(comment);
 
-  //needs to be fixed - only redirects to comments JSON element right now
-  res.json(comment)
+  res.status(200);
 });
 
 //NEW 'like' route - Julia
@@ -307,10 +306,9 @@ app.post("/like", (req, res) => {
     value: req.value
   }
 
-  console.log(req.session.id, req.body.id)
   queries.likeResource(req.session.id, req.body.id)
   console.log("resource liked!")
-  res.status(200)
+  res.status(200);
 });
 
 
