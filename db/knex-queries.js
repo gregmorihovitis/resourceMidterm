@@ -213,8 +213,8 @@ function updateUserName(userId, userName) {
     .catch(err => console.log(err.message));
 }
 //Test
-console.log("Updating user info");
-updateUserName(3, 'Max2');
+// console.log("Updating user info");
+// updateUserName(3, 'Max2');
 
 
 /*******************************
@@ -265,6 +265,28 @@ function rateResource(userId, resourceId, rating) {
 //rateResource(1, 2, 5);
 
 /*******************************
+Description: Total rating for a resource.
+Input: A resource Id and a callback function
+Output:
+*******************************/
+
+function averageRating(resourceId, cb) {
+
+  knex('ratings')
+  .where('resource_id', resourceId)
+  .avg('rating')
+  .then(results => {
+      cb(results);
+  });
+
+};
+
+
+//Test
+// console.log("Average rating for a resource.");
+// averageRating(2, (results) => {console.log(results)});
+
+/*******************************
 Description: Adds a new resource to the resource table.
 Input: An input object with all the new resource data.
 Output: Adds new resource to the recource table.
@@ -284,18 +306,41 @@ function newResource(input) {
     })
     .returning('*')
     .catch(err => console.log(err.message))
-    .then(function () { console.log() });
+    .then(function () {console.log("Added a new resource.")});
 };
 
 //Test
 //console.log("Testing adding a new resource.");
 // newResource({url: 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes',
-//              title: 'MDN: Express Tutorials',
+//              title: 'Testing new resource 2',
 //              description: 'A tutorial for using route controlers.',
 //              user_id: 1,
 //              topic_id: 2,
-//              date_posted: '31 Jan 2019',
+//              date_posted: '3 Feb 2019',
 //              img_url: 'https://mdn.mozillademos.org/files/14456/MVC%20Express.png'});
+
+/*******************************
+Description:Adds a comment to the comments table
+Input: An input object with all the new comment data.
+Output:
+*******************************/
+
+function newComment(input) {
+
+  knex('comments')
+    .insert({
+      resource_id: input.resourceId,
+      user_id: input.userId,
+      comment: input.comment
+    })
+    .returning('*')
+    .catch(err => console.log(err.message))
+    .then(function () { console.log("Testing adding a new comment"); });
+};
+
+//newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
+
+
 
 /*******************************
 Description: Deletes a resource to the resource table.
@@ -311,6 +356,27 @@ function deleteResource(resourceId) {
     .catch(err => console.log(err.message))
     .then(function () {
       console.log("Testing deleting a resource.");
+    });
+};
+
+//Test
+//deleteResource(4);
+
+
+/*******************************
+Description: Delete Like
+Input: A like's id
+Output:
+*******************************/
+
+function deleteLike(likeIf) {
+
+  knex('likes')
+    .where('id', likeId)
+    .del()
+    .catch(err => console.log(err.message))
+    .then(function () {
+      console.log("Testing deleting a like.");
     });
 };
 
@@ -363,8 +429,11 @@ module.exports = {
   findUserByName,
   findCommentByResourceId,
   updateUserInfo,
+  newComment,
+  updateUserName,
   likeResource,
   rateResource,
+  averageRating,
   newResource,
   deleteResource,
   newUser,
