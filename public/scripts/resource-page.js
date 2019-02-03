@@ -1,12 +1,14 @@
 function createResourceElement(resource) {
-  
-  let $resource =`
+
+  let $resource = `
   <article class="resource-container">
     <!-- Resource includes main image, title, and description -->
     <img src=${resource[0].img_url} class="main-img" height="280" width="auto">
     <!-- Like/Rate buttons-->
     <section class="like-rate">
-      <button class="btn"><img src="/images/like.png"></button>
+    <form method="post" action="/like">
+      <button class="btn" input type="submit" value=${resource[0].id} name="id"}><img src="/images/like.png"></button>
+      </form>
     </section>
     <!-- Resource titles and description -->
     <span class="resource-text" >
@@ -28,12 +30,11 @@ function createResourceElement(resource) {
 
     </div>
   </article>
-  `  
-  
+  `
   return $resource;
 }
 
-function renderResource(resource){
+function renderResource(resource) {
   console.log(createResourceElement(resource));
   $('body.mainContainer').append(createResourceElement(resource));
 };
@@ -47,11 +48,19 @@ const populateResource = () => {
   })
     .done((resource) => {
       renderResource(resource);
+
     });;
 }
 
 $(document).ready(function () {
   populateResource();
- 
+
+  // changes like button opacity on 'like' click  - Julia
+  // $('.resource-container .like-rate').click(function () {
+  //   $('.resource-container .like-rate').css({
+  //     'opacity': '1'
+  //   });
+  // });
+
   console.log('resource loaded');
 })
