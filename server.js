@@ -132,8 +132,7 @@ app.get("/resource", (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-  // console.log('searching: ',req.body.searchTerm);
-  const templateVars = {
+    const templateVars = {
     user_id: req.session.id,
     search_term: req.body.searchTerm
   }
@@ -142,9 +141,7 @@ app.post('/search', (req, res) => {
 
 //populateing resources
 app.get('/popResource/:id', (req, res) => {
-  // console.log('NOW THIS', req.params.id);
   queries.findResourceByResourceId(req.params.id, (popResource) => {
-    // console.log(popResource);
     res.json(popResource);
   });
 });

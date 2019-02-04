@@ -139,9 +139,6 @@ function findCommentByResourceId(resourceId, cb) {
   knex('comments')
     .select('*')
     .where('resource_id', resourceId)
-    //edited join -JR
-    .join("users", "comments.id", "users.id")
-    //was testing below to try and join resource table
     .then(rows => {
       cb(rows);
     })
@@ -390,20 +387,6 @@ function newUser(input) {
 // console.log("Testing adding a new user.");
 // newUser({name: 'Hughes', email: 'hughes@something.com', occupation: 'Cattle Wrangler'});
 
-
-/**
-
-Example use in route:
-
-  router.get("/", (req, res) => {
-    findResourceById(id, (results) => {
-        res.json(results);
-    });
-  });
-
-  return router;
-
-**/
 
 module.exports = {
 
