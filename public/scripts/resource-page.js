@@ -72,7 +72,7 @@ function createCommentElement(comment){
   let $comment = `
     <section class="unique-comment">
       <img src="/images/avatar.png" height="40" width="auto" class="avatar">
-      <p class="user-handle">${comment.name}</p>
+      <p class="user-handle">Juan Gonzalez</p>
       <span class="comment">${comment.comment}</span>
     </section>
   `
