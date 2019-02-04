@@ -248,7 +248,7 @@ app.get('/popComments/:id', (req, res) => {
 
 app.post("/users", (req, res) => {
   queries.updateUserInfo(req.session.id, {name: req.body.newName}, function() {
-    res.redirect("/settings");
+    res.redirect("/users");
   })
 });
 
