@@ -42,5 +42,9 @@ Allow learners to save learning resources like tutorials, blogs and videos in a 
 ## Screenshots
 
 ![Home page](https://github.com/gregmorihovitis/resourceMidterm/blob/master/public/images/home.png?raw=true)
-![[Topics](https://github.com/gregmorihovitis/resourceMidterm/blob/master/public/images/topics.png?raw=true)
+
+
+![Topics](https://github.com/gregmorihovitis/resourceMidterm/blob/master/public/images/topics.png?raw=true)
+
+
 ![My Resources](https://github.com/gregmorihovitis/resourceMidterm/blob/master/public/images/your_resources.png?raw=true)
