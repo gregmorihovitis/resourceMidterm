@@ -74,11 +74,11 @@ const populate = () => {
     .done((resources) => {
       renderCreative(resources);
     });;
-  console.log('populated');
+  // console.log('populated');
 };
 
 function divClick(id) {
-  console.log('click');
+  // console.log('click');
   $.post(`/resources/${id}`)
     .then((data) => {
       window.location.href = data.url;
@@ -88,6 +88,6 @@ function divClick(id) {
 
 $(document).ready(function () {
   populate();
-  console.log('page loaded');
+  // console.log('page loaded');
 })
 

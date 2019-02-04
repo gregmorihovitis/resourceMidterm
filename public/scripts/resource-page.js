@@ -2,39 +2,6 @@ function createResourceElement(resource) {
 
   let $resource = `
   <article class="resource-container">
-  <!--Ratings out of 5 stars-->
-  <form class="rating">
-<label>
-  <input type="radio" name="stars" value="1" />
-  <span class="icon">★</span>
-</label>
-<label>
-  <input type="radio" name="stars" value="2" />
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-</label>
-<label>
-  <input type="radio" name="stars" value="3" />
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-</label>
-<label>
-  <input type="radio" name="stars" value="4" />
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-</label>
-<label>
-  <input type="radio" name="stars" value="5" />
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-  <span class="icon">★</span>
-</label>
-</form>
     <!-- Resource includes main image, title, and description -->
     <img src=${resource[0].img_url} class="main-img" height="280" width="auto">
     <!-- Like/Rate buttons-->
@@ -50,6 +17,39 @@ function createResourceElement(resource) {
       </h2>
       <p>${resource[0].description}</p>
     </span>
+    <!--Ratings out of 5 stars-->
+    <form class="rating">
+  <label>
+    <input type="radio" name="stars" value="1" />
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <input type="radio" name="stars" value="2" />
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <input type="radio" name="stars" value="3" />
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <input type="radio" name="stars" value="4" />
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <input type="radio" name="stars" value="5" />
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  </form>
     <!-- Comment submission form -->
     <section class="new-comment">
       <h4 id="compose-header">Add comment</h4>
@@ -80,7 +80,7 @@ function createCommentElement(comment){
 }
 
 function renderResource(resource) {
-  console.log(createResourceElement(resource));
+  // console.log(createResourceElement(resource));
   $('body.mainContainer').append(createResourceElement(resource));
 }
 
@@ -101,7 +101,7 @@ function addComment(){
 }
 
 const populateResource = () => {
-  console.log('Secret text:', $('#secret').text());
+  // console.log('Secret text:', $('#secret').text());
 
   $.ajax({
     method: "GET",
@@ -134,5 +134,5 @@ $(document).ready(function () {
   //   });
   // });
 
-  console.log('resource loaded');
+  // console.log('resource loaded');
 })

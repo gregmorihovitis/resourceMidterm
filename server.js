@@ -54,7 +54,6 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
-// route setup for testing purposes
 app.get("/users", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -62,7 +61,6 @@ app.get("/users", (req, res) => {
   res.render("users", templateVars);
 });
 
-// route setup for testing purposes
 app.get("/settings", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -70,7 +68,7 @@ app.get("/settings", (req, res) => {
   res.render("settings", templateVars);
 });
 
-// route setup for testing purposes
+// route setup for adding new resources
 app.get("/resources/new", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -78,7 +76,7 @@ app.get("/resources/new", (req, res) => {
   res.render("addNewResource", templateVars);
 });
 
-// route setup for testing purposes
+// route setup for login and registering
 app.get("/login", (req, res) => {
   const templateVars = {
     user_id: req.session.id
@@ -90,7 +88,6 @@ app.get('/register', (req, res) => {
   const templateVars = {
     user_id: req.session.id
   }
-  // changed to register to test route
   res.render('register', templateVars);
 });
 
@@ -123,22 +120,19 @@ app.get("/popCreative", (req, res) => {
   });
 });
 
-// route setup for testing purposes -JR PLZ LEAVE
+// route setup for testing purposes
 app.get("/resource", (req, res) => {
   queries.findCommentByResourceId(1, (comments) => {
     const templateVars = {
-      //   comments: comments
       comments: JSON.stringify(comments),
       user_id: req.session.id
-      //just leave comments and remove json.stringify and parenthesis after**********
     }
-    // queries.findResourceByUserId(1(resource))
     res.render("resource", templateVars);
   });
 });
 
 app.post('/search', (req, res) => {
-  console.log('searching: ',req.body.searchTerm);
+  // console.log('searching: ',req.body.searchTerm);
   const templateVars = {
     user_id: req.session.id,
     search_term: req.body.searchTerm
@@ -146,20 +140,18 @@ app.post('/search', (req, res) => {
   res.render('search', templateVars);
 });
 
-//added new route for new resources - JR ****
-
-
+//populateing resources
 app.get('/popResource/:id', (req, res) => {
   // console.log('NOW THIS', req.params.id);
   queries.findResourceByResourceId(req.params.id, (popResource) => {
-    console.log(popResource);
+    // console.log(popResource);
     res.json(popResource);
   });
 });
 
-// Route for when user clicks on a resource ** -Max - NEW
+// Route for when user clicks on a resource
 app.get("/resources/:resourceId", (req, res) => {
-  console.log('THIS ONE', req.params.resourceId);
+  // console.log('THIS ONE', req.params.resourceId);
   const templateVars = {
     user_id: req.session.id,
     resource_id: req.params.resourceId
@@ -174,49 +166,11 @@ app.get("/resources/new", (req, res) => {
   res.render('addNewResource', templateVars);
 });
 
-// Route for getting to a users information page ** -Max NEW
-//doesn't work yet ----DOESN'T WORK - SHOULD DELETE SOON AFTER MYRESOURCES IS CREATED
-
-// app.get("/users/:userId", (req, res) => {
-//   const templateVars = {
-//     userId: req.session.id
-//   }
-//   console.log('THIS ONE', req.params.userId);
-
-
-//   res.render('users/' + req.session.id, templateVars);
-// });
-
-// Route for getting all of a users resources
-// and liked resources                            ** -Max NEW
-// app.get("/resources/:userId", (req, res) => {
-
-//   let pageResources = {
-//     userResources: {},
-//     likedResources: {}
-//   };
-
-//   const templateVars = {
-//     user_id: req.session.id
-//   }
-
-
-//   queries.findResourceByUserId(request.params.userId, (userResources) => {
-//     pageResources.userResources = json(userResources);
-//   });
-
-//   queries.findResourceByUserLikes(request.params.userId, (likedResources) => {
-//     pageResources.likedResources = json(likedResources);
-//   });
-
-//   res.render('index', pageResources, templateVars);
-
-// });
-
+//populating search box
 app.get('/popSearch/:searchTerm', (req, res) => {
-  console.log(req.params.searchTerm);
+  // console.log(req.params.searchTerm);
   queries.searchResources(req.params.searchTerm, (popSearch) => {
-    console.log(popSearch);
+    // console.log(popSearch);
     res.json(popSearch);
   });
 });
@@ -228,9 +182,9 @@ app.get("/logout", (req, res) => {
 });
 
 app.get('/popComments/:id', (req, res) => {
-  console.log('loading comments by id:', req.params.id);
+  // console.log('loading comments by id:', req.params.id);
   queries.findCommentByResourceId(req.params.id, (popComments) => {
-    console.log(popComments);
+    // console.log(popComments);
     res.json(popComments);
   });
 });
@@ -253,16 +207,9 @@ app.get('/popLiked', (req, res) => {
     res.json(popLiked);
   });
 });
-// route setup for changing user name
 
-// // Route for when user searches recources ** -Max - NEW
-// app.post("/search/:searchTerm", (req, res) => {
-
-//   res.json('search', temp)
-// });
 
 // route setup for testing purposes
-
 app.post("/users", (req, res) => {
   queries.updateUserInfo(req.session.id, {name: req.body.newName}, function() {
     res.redirect("/users");
@@ -270,9 +217,8 @@ app.post("/users", (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  // let testid = 'testUser';
   req.session.id = req.body.loginHandle;
-  console.log(req.session.id);
+  // console.log(req.session.id);
   res.redirect("/");
 });
 
@@ -280,7 +226,7 @@ app.post('/login', (req, res) => {
 app.post("/register", (req, res) => {
   req.session.id = req.body.registerHandle;
   queries.newUser(req.session.id);
-  console.log('registered');
+  // console.log('registered');
   res.redirect("/");
 });
 
@@ -303,28 +249,25 @@ app.post("/resources/new", (req, res) => {
   res.redirect('/');
 });
 
-// Route for user rating a resource       ** -Max
 
-//NEW comment routes - Julia
+// comment routes 
 app.post("/comments", (req, res) => {
   if (!req.body.text) {
     res.status(400).json({ error: 'invalid request: no data in POST body' });
     return;
   }
-  //make function that checks if a user is logged in
-  // const user = req.body.user ?
   const comment = {
     resourceId: req.body.id,
     userId: req.session.id,
     comment: req.body.text
   }
-  console.log(comment);
+  // console.log(comment);
   queries.newComment(comment);
 
   res.redirect(`/resources/${req.body.id}`);
 });
 
-//NEW 'like' route - Julia
+//'like' route
 app.post("/like", (req, res) => {
   const like = {
     user_id: req.session.id,
@@ -332,14 +275,14 @@ app.post("/like", (req, res) => {
   }
 
   queries.likeResource(req.session.id, req.body.id)
-  console.log("resource liked!")
+  // console.log("resource liked!")
   res.status(200);
 });
 
 
 
 app.post("/resources/:resourceId", (req, res) => {
-  console.log('post recieved', req.params.resourceId);
+  // console.log('post recieved', req.params.resourceId);
   let urlName = `/resources/${req.params.resourceId}`;
   res.json({ url: urlName });
 })
@@ -347,6 +290,6 @@ app.post("/resources/:resourceId", (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  // console.log("Example app listening on port " + PORT);
 });
 
