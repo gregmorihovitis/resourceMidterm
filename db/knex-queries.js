@@ -192,29 +192,17 @@ Input: User data.
 Output:
 *******************************/
 
-function updateUserInfo(userId, userInfo) {
+function updateUserInfo(userId, userInfo, cb) {
 
   knex('users')
     .where('id', userId)
     .update({ name: userInfo.name })
-    .then()
+    .then(cb)
     .catch(err => console.log(err.message));
 }
 //Test
 // console.log("Updating user info");
 // updateUserInfo(5, {name: 'Max2'});
-
-function updateUserName(userId, userName) {
-
-  knex('users')
-    .where('id', userId)
-    .update({ name: userName })
-    .catch(err => console.log(err.message));
-}
-//Test
-// console.log("Updating user info");
-// updateUserName(3, 'Max2');
-
 
 /*******************************
 Description: Adds a like to the  likes table.
@@ -429,7 +417,7 @@ module.exports = {
   findCommentByResourceId,
   updateUserInfo,
   newComment,
-  updateUserName,
+  updateUserInfo,
   likeResource,
   rateResource,
   averageRating,
