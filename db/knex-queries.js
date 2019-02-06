@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '../.env' });
 
 const settings = require('../knexfile.js')['development'];
-//console.log(settings);
 
 const knex = require('knex')(settings);
 
@@ -322,7 +321,6 @@ function newComment(input) {
     .then(function () { console.log("Testing adding a new comment"); });
 };
 
-//newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
 
 
 
@@ -376,7 +374,7 @@ Output: Adds new user to the users table.
 function newUser(input) {
 
   knex('users')
-    .insert({ name: input }) //Deleted email and occupation fields for input **NEW
+    .insert({ name: input }) 
     .returning('*')
     .catch(err => console.log(err.message))
     .then();

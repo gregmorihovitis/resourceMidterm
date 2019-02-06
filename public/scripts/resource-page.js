@@ -80,20 +80,13 @@ function createCommentElement(comment){
 }
 
 function renderResource(resource) {
-  // console.log(createResourceElement(resource));
   $('body.mainContainer').append(createResourceElement(resource));
 }
 
 function renderComments(comments){
-  // if($('.comment').val() === undefined){
     comments.forEach(currComment => {
       $('.comments-container').prepend(createCommentElement(currComment));
     });
-  // }else{
-    // let lastComment = comments[comments.length - 1];
-    
-    // $('.comments-container').prepend(createCommentElement(lastComment));
-  // }
 }
 
 function addComment(){
@@ -101,8 +94,6 @@ function addComment(){
 }
 
 const populateResource = () => {
-  // console.log('Secret text:', $('#secret').text());
-
   $.ajax({
     method: "GET",
     url: `/popResource/${$('#secret').text()}`
@@ -126,13 +117,4 @@ const popComment = () => {
 $(document).ready(function () {
   populateResource();
   popComment();
-
-  // changes like button opacity on 'like' click  - Julia
-  // $('.resource-container .like-rate').click(function () {
-  //   $('.resource-container .like-rate').css({
-  //     'opacity': '1'
-  //   });
-  // });
-
-  // console.log('resource loaded');
 })

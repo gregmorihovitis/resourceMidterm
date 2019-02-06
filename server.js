@@ -148,7 +148,6 @@ app.get('/popResource/:id', (req, res) => {
 
 // Route for when user clicks on a resource
 app.get("/resources/:resourceId", (req, res) => {
-  // console.log('THIS ONE', req.params.resourceId);
   const templateVars = {
     user_id: req.session.id,
     resource_id: req.params.resourceId
@@ -165,9 +164,7 @@ app.get("/resources/new", (req, res) => {
 
 //populating search box
 app.get('/popSearch/:searchTerm', (req, res) => {
-  // console.log(req.params.searchTerm);
   queries.searchResources(req.params.searchTerm, (popSearch) => {
-    // console.log(popSearch);
     res.json(popSearch);
   });
 });
@@ -179,9 +176,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.get('/popComments/:id', (req, res) => {
-  // console.log('loading comments by id:', req.params.id);
   queries.findCommentByResourceId(req.params.id, (popComments) => {
-    // console.log(popComments);
     res.json(popComments);
   });
 });
@@ -215,7 +210,6 @@ app.post("/users", (req, res) => {
 
 app.post('/login', (req, res) => {
   req.session.id = req.body.loginHandle;
-  // console.log(req.session.id);
   res.redirect("/");
 });
 
@@ -223,7 +217,6 @@ app.post('/login', (req, res) => {
 app.post("/register", (req, res) => {
   req.session.id = req.body.registerHandle;
   queries.newUser(req.session.id);
-  // console.log('registered');
   res.redirect("/");
 });
 
@@ -258,7 +251,6 @@ app.post("/comments", (req, res) => {
     userId: req.session.id,
     comment: req.body.text
   }
-  // console.log(comment);
   queries.newComment(comment);
 
   res.redirect(`/resources/${req.body.id}`);
@@ -272,14 +264,12 @@ app.post("/like", (req, res) => {
   }
 
   queries.likeResource(req.session.id, req.body.id)
-  // console.log("resource liked!")
   res.status(200);
 });
 
 
 
 app.post("/resources/:resourceId", (req, res) => {
-  // console.log('post recieved', req.params.resourceId);
   let urlName = `/resources/${req.params.resourceId}`;
   res.json({ url: urlName });
 })
@@ -287,6 +277,6 @@ app.post("/resources/:resourceId", (req, res) => {
 
 
 app.listen(PORT, () => {
-  // console.log("Example app listening on port " + PORT);
+  console.log("Example app listening on port " + PORT);
 });
 
