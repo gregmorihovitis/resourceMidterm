@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '../.env' });
 
 const settings = require('../knexfile.js')['development'];
-//console.log(settings);
 
 const knex = require('knex')(settings);
 
@@ -139,9 +138,6 @@ function findCommentByResourceId(resourceId, cb) {
   knex('comments')
     .select('*')
     .where('resource_id', resourceId)
-    //edited join -JR
-    .join("users", "comments.id", "users.id")
-    //was testing below to try and join resource table
     .then(rows => {
       cb(rows);
     })
@@ -325,7 +321,6 @@ function newComment(input) {
     .then(function () { console.log("Testing adding a new comment"); });
 };
 
-//newComment({resourceId: 1, userId: 1, comment: "This is a test for adding a comment"});
 
 
 
@@ -379,7 +374,7 @@ Output: Adds new user to the users table.
 function newUser(input) {
 
   knex('users')
-    .insert({ name: input }) //Deleted email and occupation fields for input **NEW
+    .insert({ name: input }) 
     .returning('*')
     .catch(err => console.log(err.message))
     .then();
@@ -390,20 +385,6 @@ function newUser(input) {
 // console.log("Testing adding a new user.");
 // newUser({name: 'Hughes', email: 'hughes@something.com', occupation: 'Cattle Wrangler'});
 
-
-/**
-
-Example use in route:
-
-  router.get("/", (req, res) => {
-    findResourceById(id, (results) => {
-        res.json(results);
-    });
-  });
-
-  return router;
-
-**/
 
 module.exports = {
 

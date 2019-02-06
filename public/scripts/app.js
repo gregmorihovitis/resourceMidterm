@@ -12,7 +12,7 @@ function createResourceElement(resource) {
 
   return $resource;
 }
-
+//Rendering and populating each topic
 function renderNeuro(resources) {
   resources.forEach(currResource => {
     $('#neuroRow').prepend(createResourceElement(currResource));
@@ -74,11 +74,9 @@ const populate = () => {
     .done((resources) => {
       renderCreative(resources);
     });;
-  console.log('populated');
 };
 
 function divClick(id) {
-  console.log('click');
   $.post(`/resources/${id}`)
     .then((data) => {
       window.location.href = data.url;
@@ -88,6 +86,5 @@ function divClick(id) {
 
 $(document).ready(function () {
   populate();
-  console.log('page loaded');
 })
 

@@ -48,7 +48,6 @@ function createResourceElement(resource) {
   };
   
   function divClick(id) {
-    console.log('click');
     $.post(`/resources/${id}`)
       .then((data) => {
         window.location.href = data.url;
@@ -58,7 +57,6 @@ function createResourceElement(resource) {
   
   $(document).ready(function () {
     populate();
-    console.log('page loaded');
   })
   
   
